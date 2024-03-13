@@ -1,0 +1,71 @@
+@font-face {
+    font-family: 'round_black';
+    src: url('../font/sp_pro_round_black.otf');
+}
+.f_black{
+    font-family: round_black, system-ui;
+}
+
+@font-face {
+    font-family: 'round_black_semibold';
+    src: url('../font/sp_pro_round_black_semibold.otf');
+}
+.f_black_semibold{
+    font-family: round_black_semibold, system-ui;
+}
+
+@font-face {
+    font-family: 'round_bold';
+    src: url('../font/sp_pro_round_bold.otf');
+}
+.f_bold{
+    font-family: round_bold, system-ui;
+}
+
+@font-face {
+    font-family: 'round_heavy';
+    src: url('../font/sp_pro_round_heavy.otf');
+}
+.f_heavy{
+    font-family: round_heavy, system-ui;
+}
+
+@font-face {
+    font-family: 'round_light';
+    src: url('../font/sp_pro_round_light.otf');
+}
+.f_light{
+    font-family: round_light, system-ui;
+}
+
+@font-face {
+    font-family: 'round_medium';
+    src: url('../font/sp_pro_round_medium.otf');
+}
+.f_medium{
+    font-family: round_medium, system-ui;
+}
+
+@font-face {
+    font-family: 'round_regular';
+    src: url('../font/sp_pro_round_regular.otf');
+}
+.f_regular{
+    font-family: round_regular, system-ui;
+}
+
+@font-face {
+    font-family: 'round_thin';
+    src: url('../font/sp_pro_round_thin.otf');
+}
+.f_thin{
+    font-family: round_thin, system-ui;
+}
+
+@font-face {
+    font-family: 'round_ultra_light';
+    src: url('../font/sp_pro_round_ultra_light.otf');
+}
+.f_ultra_light{
+    font-family: round_ultra_light, system-ui;
+}

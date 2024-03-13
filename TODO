@@ -1,0 +1,10 @@
+1. not found page: @done
+2. sign in page:
+rsc
+
+ <color name="seed">#FF8201</color>
+    <color name="orange_blur">#33FF8201</color>
+    <color name="orange_red">#FF0000</color>
+    <color name="special_orange">#FF6347</color>
+    <color name="bold_orange">#E57029</color>
+    <color name="light_orange">#F3A354</color>

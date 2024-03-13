@@ -1,0 +1,11 @@
+.container{
+  width: 30rem;
+  height: 30rem;
+  display: inline-block;
+}
+
+
+.title{
+  font-size: large;
+}
+

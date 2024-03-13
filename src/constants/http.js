@@ -1,0 +1,1 @@
+export const CYBER_GO_TOKEN = 'cyber_go_token'
