@@ -1,45 +1,31 @@
 import {Route, Routes} from "react-router-dom";
 
-import {
-    DASHBOARD_PATH,
-    DRIVER_REGISTER_PATH, HOME_PATH,
-    NOT_FOUND_PATH,
-    SIGN_IN_PATH,
-    SIGN_UP_PATH,
-    USER_MANAGEMENT_PATH
-} from "../constants/paths";
-
-import SignInLayout from "../layout/sign-in-layout";
-import SignInPage from "../page/common/sign-in-page";
-import SignUpPage from "../page/common/sign-up-page";
-import NotFoundPage from "../page/common/not-found-page";
-import NotFoundLayout from "../layout/not-found-layout";
-import UserManagementPage from "../page/admin/user-management-page";
-import DashboardPage from "../page/admin/dashboard-page";
-import DriverRegisterPage from "../page/admin/driver-register-page";
-import HomePage from "../page/client/home-page";
-import MainClientLayout from "../layout/main-client-layout";
-
+import {SignInLayout, NotFoundLayout, MainClientLayout, MainAdminLayout} from "~/layout";
+import {SignInPage, NotFoundPage} from "~/page/common";
+import {AccountPage, DashboardPage, DriverPage} from "~/page/admin";
+import {HomePage} from "~/page/client";
+import PrivateRoute from './PrivateRoute'
+import {Paths} from "~/constants";
 
 const public_route = [
-    {path: SIGN_IN_PATH, page: SignInPage, layout: SignInLayout},
-    {path: SIGN_UP_PATH, page: SignUpPage, layout: SignInLayout},
-    {path: NOT_FOUND_PATH, page:NotFoundPage, layout: NotFoundLayout},
-    {path: HOME_PATH, page:HomePage, layout: MainClientLayout}
+    {path: Paths.public_path.SIGN_IN_PATH, page: SignInPage, layout: SignInLayout},
+    {path: Paths.public_path.NOT_FOUND_PATH, page: NotFoundPage, layout: NotFoundLayout},
+    {path: Paths.public_path.HOME_PATH, page: HomePage, layout: MainClientLayout}
 ]
 
 const private_route = [
-    {path: DRIVER_REGISTER_PATH, page: DriverRegisterPage},
-    {path: DASHBOARD_PATH, page: DashboardPage},
-    {path: USER_MANAGEMENT_PATH, page:UserManagementPage}
+    {path: Paths.private_path.DRIVER_PATH, page: DriverPage, layout: MainAdminLayout},
+    {path: Paths.private_path.DASHBOARD_PATH, page: DashboardPage, layout: MainAdminLayout},
+    {path: Paths.private_path.ACCOUNT_PATH, page: AccountPage, layout: MainAdminLayout}
 ]
 
-function GenerateRoute(route_list){
-    return route_list.map(route => {
+function GeneratePublicRoute(route_list) {
+    return route_list.map((route, index) => {
         const Layout = route.layout
         const Page = route.page
         return (
             <Route
+                key={index}
                 path={route.path}
                 element={
                     <Layout>
@@ -51,11 +37,32 @@ function GenerateRoute(route_list){
     })
 }
 
+function GeneratePrivateRoute(route_list) {
+    return route_list.map((route, index) => {
+        const Layout = route.layout
+        const Page = route.page
+        return (
+            <Route
+                key={index}
+                path={route.path}
+                element={
+                    <PrivateRoute>
+                        <Layout>
+                            <Page/>
+                        </Layout>
+                    </PrivateRoute>
+                }
+            />
+        )
+    })
+}
+
+
 export default function CyberGoRouter() {
     return (
         <Routes>
-            {GenerateRoute(public_route)}
-            {GenerateRoute(private_route)}
+            {GeneratePublicRoute(public_route)}
+            {GeneratePrivateRoute(private_route)}
         </Routes>
     )
 }

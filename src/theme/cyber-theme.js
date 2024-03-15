@@ -3,7 +3,7 @@ import {orange} from "@mui/material/colors";
 
 const CyberTheme = createTheme({
     palette:{
-        primary:orange,
+        primary: orange,
         secondary: orange
     }
 })

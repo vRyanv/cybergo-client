@@ -1,9 +1,10 @@
 import React from 'react';
 import TextField from "@mui/material/TextField";
 
-const OutLineTextField = ({label, helperText, is_error, style, value, onChange}) => {
+const OutLineTextField = ({label, helperText, is_error, style, value, type, onChange}) => {
     return (
         <TextField
+            type={type}
             onChange={onChange}
             value={value}
             style={style}
