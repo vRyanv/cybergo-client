@@ -1,9 +1,11 @@
 import DashboardPage from './dashboard-page'
 import AccountPage from './account-page'
-import DriverPage from './driver-page'
+import DriverRegistrationPage from './driver-registration'
+import DriverRegistrationDetailPage from './driver-registration-detail'
 
 export {
     DashboardPage,
     AccountPage,
-    DriverPage,
+    DriverRegistrationPage,
+    DriverRegistrationDetailPage,
 }

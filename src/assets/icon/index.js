@@ -1,23 +1,35 @@
-import DashboardIcon from '@mui/icons-material/Dashboard';
+import DashboardTwoToneIcon from '@mui/icons-material/DashboardTwoTone';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
-import ForumIcon from '@mui/icons-material/Forum';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import ManageAccountsTwoToneIcon from '@mui/icons-material/ManageAccountsTwoTone';
+import PeopleAltTwoToneIcon from '@mui/icons-material/PeopleAltTwoTone';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
+import CancelIcon from '@mui/icons-material/Cancel';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ForwardToInboxTwoToneIcon from '@mui/icons-material/ForwardToInboxTwoTone';
+import QuestionAnswerTwoToneIcon from '@mui/icons-material/QuestionAnswerTwoTone';
+import SearchIcon from '@mui/icons-material/Search';
 
 export {
-    SupervisorAccountIcon,
-    ManageAccountsIcon,
-    ForumIcon,
+    SearchIcon,
+    ForwardToInboxTwoToneIcon,
+    CheckCircleIcon,
+    CancelIcon,
+    KeyboardReturnIcon,
+    ArrowBackIosNewIcon,
+    PeopleAltTwoToneIcon,
+    ManageAccountsTwoToneIcon,
+    QuestionAnswerTwoToneIcon,
     TwoWheelerIcon,
     NotificationsIcon,
     KeyboardArrowDownIcon,
     MenuIcon,
     AdminPanelSettingsIcon,
     AppRegistrationIcon,
-    DashboardIcon
+    DashboardTwoToneIcon
 }

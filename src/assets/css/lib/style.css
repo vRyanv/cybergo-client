@@ -4,6 +4,7 @@
     --secondary: white;
     --light: black;
     --dark: white;
+    --primary-light: rgba(255, 197, 137, 0.34);
 }
 
 ::-webkit-scrollbar {
@@ -28,11 +29,42 @@ td{
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+.title-field-driver-registration{
+    width: fit-content;
+    background: var(--primary-light);
+    padding: 0.3rem;
+    font-family: round_medium, system-ui;
+}
+
+.full-width-body-page{
+    width: calc(100% - 50px) !important
+}
+
+.container-fluid-body{
+    padding-right: 0!important;
+    padding-left: 0!important;
+}
+
+.header-body{
+    position:sticky; z-index:99; top: 82px
+}
+
+.sidebar.open.body-page{
+    background: red;
+}
+
+.can-zoom{
+    cursor: zoom-in;
+}
+
 .body-page{
-    height: 100vh;
     position: fixed;
     height: calc(100% - 14rem);
     width: calc(100% - 298px);
+}
+
+.content.open .navbar .sidebar-toggler svg{
+    rotate: 180deg;
 }
 
 

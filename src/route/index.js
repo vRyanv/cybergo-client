@@ -2,7 +2,7 @@ import {Route, Routes} from "react-router-dom";
 
 import {SignInLayout, NotFoundLayout, MainClientLayout, MainAdminLayout} from "~/layout";
 import {SignInPage, NotFoundPage} from "~/page/common";
-import {AccountPage, DashboardPage, DriverPage} from "~/page/admin";
+import {AccountPage, DashboardPage, DriverRegistrationPage, DriverRegistrationDetailPage} from "~/page/admin";
 import {HomePage} from "~/page/client";
 import PrivateRoute from './PrivateRoute'
 import {Paths} from "~/constants";
@@ -14,7 +14,8 @@ const public_route = [
 ]
 
 const private_route = [
-    {path: Paths.private_path.DRIVER_PATH, page: DriverPage, layout: MainAdminLayout},
+    {path: Paths.private_path.DRIVER_REGISTRATION_PATH, page: DriverRegistrationPage, layout: MainAdminLayout},
+    {path: Paths.private_path.DRIVER_REGISTRATION_DETAIL_PATH, page: DriverRegistrationDetailPage, layout: MainAdminLayout},
     {path: Paths.private_path.DASHBOARD_PATH, page: DashboardPage, layout: MainAdminLayout},
     {path: Paths.private_path.ACCOUNT_PATH, page: AccountPage, layout: MainAdminLayout}
 ]

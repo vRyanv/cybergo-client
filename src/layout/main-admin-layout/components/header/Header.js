@@ -1,4 +1,4 @@
-import {AdminPanelSettingsIcon, MenuIcon, KeyboardArrowDownIcon, NotificationsIcon} from '~/assets/icon'
+import {AdminPanelSettingsIcon, ArrowBackIosNewIcon, KeyboardArrowDownIcon, NotificationsIcon} from '~/assets/icon'
 import avatar from '~/assets/images/thumb.jpg'
 import {Scrollbars} from 'react-custom-scrollbars-2';
 import NotificationItem from "~/layout/main-admin-layout/components/header/NotificationItem";
@@ -7,18 +7,26 @@ export default function Header() {
     const onMenuClicked = (e) => {
         const side_bar = document.getElementsByClassName('sidebar')
         const content = document.getElementsByClassName('content')
+        const body_page = document.getElementsByClassName('body-page')
 
         if (side_bar[0].classList.contains('open')) {
             side_bar[0].classList.remove('open')
             content[0].classList.remove('open')
+            if(body_page.length){
+                body_page[0].classList.remove('full-width-body-page')
+            }
+
         } else {
             side_bar[0].classList.add('open')
             content[0].classList.add('open')
+            if(body_page.length){
+                body_page[0].classList.add('full-width-body-page')
+            }
         }
     }
 
     return (
-        <nav style={{padding: '1rem!important', zIndex: 99999}}
+        <nav style={{padding: '1rem!important'}}
              className="navbar navbar-expand navbar-dark sticky-top bg-glass">
             <div className="navbar-brand d-flex d-lg-none me-4" style={{marginLeft: '1.5rem'}}>
                 <h2 style={{color: 'white'}} className="mb-0">
@@ -28,7 +36,7 @@ export default function Header() {
             <div onClick={onMenuClicked}
                  style={{backgroundColor: '#ffc58957', color: 'orange', marginLeft: '1rem'}}
                  className="sidebar-toggler flex-shrink-0">
-                <MenuIcon/>
+                <ArrowBackIosNewIcon/>
             </div>
             <div className="navbar-nav align-items-center ms-auto" style={{marginRight: '23px'}}>
                 <div className="nav-item dropdown">
@@ -42,7 +50,7 @@ export default function Header() {
                     <div
                         className="dropdown-menu dropdown-menu-end border-0 rounded m-0"
                         data-bs-popper="none" style={{width: 'fit-content'}}>
-                        <Scrollbars style={{minWidth: '10rem', height: 300}}  autoHide overflowX={'hidden'}>
+                        <Scrollbars style={{minWidth: '10rem', height: 300}}  autoHide>
                             {
                                 Array.from([1,2,3,4]).map((a, index) => <NotificationItem key={index} content={'hello'} from={'khang'}/>)
                             }

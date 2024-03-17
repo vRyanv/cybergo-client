@@ -1,6 +1,7 @@
 import 'bootstrap/dist/js/bootstrap.min.js'
-import './assets/css/lib/bootstrap.min.css';
+import 'jquery/dist/jquery.min.js'
 
+import './assets/css/lib/bootstrap.min.css';
 import './assets/css/lib/style.css';
 
 import CssBaseline from '@mui/material/CssBaseline'

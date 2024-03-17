@@ -6,7 +6,8 @@ const paths = {
         NOT_FOUND_PATH: '*'
     },
     private_path: {
-        DRIVER_PATH: '/driver/:id',
+        DRIVER_REGISTRATION_PATH: '/driver-registration',
+        DRIVER_REGISTRATION_DETAIL_PATH: '/driver-registration/:driver_registration_id',
         DASHBOARD_PATH: '/dashboard',
         ACCOUNT_PATH: '/account-management'
     }

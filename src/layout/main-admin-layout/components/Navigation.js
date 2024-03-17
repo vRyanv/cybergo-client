@@ -1,9 +1,9 @@
 import {
-    DashboardIcon,
+    DashboardTwoToneIcon,
     TwoWheelerIcon,
-    ForumIcon,
-    ManageAccountsIcon,
-    SupervisorAccountIcon} from '~/assets/icon'
+    QuestionAnswerTwoToneIcon,
+    ManageAccountsTwoToneIcon,
+    PeopleAltTwoToneIcon} from '~/assets/icon'
 import {NavLink, useLocation} from "react-router-dom";
 import React from "react";
 import front from '~/assets/css/font.module.css'
@@ -19,7 +19,7 @@ export default function Navigation(){
     }
     const location = useLocation();
     return (
-        <div className="sidebar pe-4 pb-3 p-3 mb-5 bg-body-tertiary bg-glass" style={{zIndex: 99998}}>
+        <div className="sidebar pe-4 pb-3 p-3 mb-5 bg-body-tertiary bg-glass">
             <nav className="navbar navbar-dark">
                 <div className="navbar-brand mx-4 mb-3">
                     <h3 className={front.f_heavy} style={{color: 'var(--primary)'}}>CYBER GO
@@ -30,10 +30,10 @@ export default function Navigation(){
                         to={'/dashboard'}
                         className={`nav-item nav-link ${location.pathname.includes('/dashboard') ? 'active' : '' }`}
                         onClick={onNavClicked}>
-                        <DashboardIcon style={{marginRight: '1rem'}}/>
+                        <DashboardTwoToneIcon style={{marginRight: '1rem'}}/>
                         Dashboard
                     </NavLink >
-                    <NavLink   to={'/driver/123'}
+                    <NavLink   to={'/driver-registration'}
                                className={`nav-item nav-link ${location.pathname.includes('/driver') ? 'active' : '' }`}
                                onClick={onNavClicked}>
                         <TwoWheelerIcon style={{marginRight: '1rem'}}/>
@@ -43,21 +43,21 @@ export default function Navigation(){
                         to={'/feedback'}
                         className={`nav-item nav-link ${location.pathname.includes('/feedback') ? 'active' : '' }`}
                         onClick={onNavClicked}>
-                        <ForumIcon style={{marginRight: '1rem'}}/>
+                        <QuestionAnswerTwoToneIcon style={{marginRight: '1rem'}}/>
                         Feedback
                     </NavLink >
                     <NavLink
                         to={'/account'}
                         className={`nav-item nav-link ${location.pathname.includes('/account') ? 'active' : '' }`}
                         onClick={onNavClicked}>
-                        <SupervisorAccountIcon style={{marginRight: '1rem'}}/>
+                        <PeopleAltTwoToneIcon style={{marginRight: '1rem'}}/>
                         Account
                     </NavLink >
                     <NavLink
                         to={'/profile'}
                         className={`nav-item nav-link ${location.pathname.includes('/profile') ? 'active' : '' }`}
                         onClick={onNavClicked}>
-                        <ManageAccountsIcon style={{marginRight: '1rem'}}/>
+                        <ManageAccountsTwoToneIcon style={{marginRight: '1rem'}}/>
                         Profile
                     </NavLink >
                 </div>

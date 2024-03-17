@@ -144,7 +144,7 @@
     font-size: 1.35em;
     transform-origin: left bottom;
     /* From https://css.glass */
-    background: var(--yellow);
+    background: var(--primary);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(8.9px);
@@ -163,19 +163,21 @@
 .member:hover h3 {
     transition: var(--trans);
     transform: rotate(0deg);
-    /*background: linear-gradient(180deg, #fff0 59%, var(--dark) 0 100%);*/
+    color: white;
 }
 
 .driver-registration-status:after{
-    font-size: 1em;
+    font-size: .8em;
     position: absolute;
     top: -1.5em;
-    right: 4em;
+    right: 2em;
     transform: rotate(3deg);
     padding: 0.35em 0.75em 0.5em;
     border-radius: 0.25em;
     color: white;
     font-weight: bold;
+    width: 5.5rem;
+    text-align: center;
 }
 
 .queue-driver-registration-status:after {
@@ -184,12 +186,12 @@
 }
 
 .accept-driver-registration-status:after {
-    content: "ACCEPT";
+    content: "ACCEPTED";
     background: green;
 }
 
 .refuse-driver-registration-status:after {
-    content: "REFUSE";
+    content: "REFUSED";
     background: red;
 }
 
