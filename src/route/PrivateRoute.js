@@ -1,11 +1,12 @@
 import NotFoundLayout from "~/layout/not-found-layout";
 import UnauthorizedPage from "~/page/common/unauthorized-page";
+import {UseLocalStorage} from '~/hooks'
 
-import {UserTokenContext}  from '~/context/UserTokenContext'
-import {useContext} from "react";
+import {Http} from '~/constants'
 
 const PrivateRoute = ({children}) => {
-    const [token, setUserToken] = useContext(UserTokenContext)
+    const [getLocal, saveLocal] = UseLocalStorage()
+    const token = getLocal(Http.USER_TOKEN)
     if (!token) {
         return (
             <NotFoundLayout>

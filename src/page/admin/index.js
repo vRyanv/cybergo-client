@@ -1,11 +1,17 @@
 import DashboardPage from './dashboard-page'
-import AccountPage from './account-page'
-import DriverRegistrationPage from './driver-registration'
-import DriverRegistrationDetailPage from './driver-registration-detail'
+import UserListPage from './user-list-page'
+import UserDetailPage from './user-detail-page'
+import DriverRegistrationPage from './driver-registration-list-page'
+import DriverRegistrationDetailPage from './driver-registration-detail-page'
+import VehiclePage from './vehicle-page'
+import VehicleDetailPage from './vehicle-detail-page'
 
 export {
     DashboardPage,
-    AccountPage,
+    UserListPage,
+    UserDetailPage,
     DriverRegistrationPage,
     DriverRegistrationDetailPage,
+    VehiclePage,
+    VehicleDetailPage,
 }

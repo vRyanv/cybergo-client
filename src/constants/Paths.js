@@ -7,9 +7,12 @@ const paths = {
     },
     private_path: {
         DRIVER_REGISTRATION_PATH: '/driver-registration',
-        DRIVER_REGISTRATION_DETAIL_PATH: '/driver-registration/:driver_registration_id',
+        DRIVER_REGISTRATION_DETAIL_PATH: '/driver-registration/detail/:driver_registration_id',
         DASHBOARD_PATH: '/dashboard',
-        ACCOUNT_PATH: '/account-management'
+        USER_PATH: '/user',
+        USER_DETAIL_PATH: '/user/detail/:user_id',
+        VEHICLE_PATH: '/vehicle',
+        VEHICLE_DETAIL_PATH: '/vehicle/detail/:vehicle_id',
     }
 }
 

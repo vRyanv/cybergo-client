@@ -1,16 +1,15 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import Axios from 'axios'
-
+import {enqueueSnackbar} from 'notistack'
+import {LoadingButton } from '@mui/lab'
 import './sign-in-page.css'
 import FontStyle from '~/assets/css/font.module.css'
 
 import {OutLineTextField} from '~/components/custom'
-import PrimaryButton from "~/components/custom/button/PrimaryButton";
 import IsValidEmail from "~/utils/email-util";
 
 
-import {UserTokenContext} from '~/context/UserTokenContext'
-import {UseLoading, UseDocumentTitle} from "~/hooks";
+import {UseDocumentTitle, UseLocalStorage} from "~/hooks";
 
 import {Message, Http, StatusCode} from '~/constants'
 import {useNavigate} from "react-router-dom";
@@ -18,8 +17,8 @@ import {useNavigate} from "react-router-dom";
 export default function SignInPage() {
     UseDocumentTitle('Sign in')
     const navigate = useNavigate();
+    const [is_loading, setIsLoading] = useState(false)
 
-    const [user_token, setUserToken] = useContext(UserTokenContext)
     const [email, setEmail] = useState();
     const [is_error_email, setIsErrorEmail] = useState(false);
     const [error_email_mess, setErrorEmailMess] = useState();
@@ -56,8 +55,7 @@ export default function SignInPage() {
         if (is_error) {
             return
         }
-
-        UseLoading(true)
+        setIsLoading(true)
         Axios.post(`${Http.HOST}/security/sign-in`, {
             email,
             password
@@ -65,13 +63,17 @@ export default function SignInPage() {
             console.log(response)
             if(response.data.code === StatusCode.OK){
                 navigate("/");
-                setUserToken(response.data.token)
+                const [getLocal, saveLocal] = UseLocalStorage()
+                console.log(saveLocal)
+                saveLocal(Http.USER_TOKEN, response.data.token)
             } else {
                 alert('login fail')
             }
-            UseLoading(false)
+            setIsLoading(false)
         }).catch(function (error) {
+            setIsLoading(false)
             console.log(error);
+            enqueueSnackbar('Something went wrong, can\'t connect to server', {variant: 'error'})
         });
 
     }
@@ -112,18 +114,16 @@ export default function SignInPage() {
                                     cursor: 'pointer'
                                 }}>Forget password?</p>
                             </div>
-                            <PrimaryButton
-                                style={{
-                                    width: '100%',
-                                    border: 'none',
-                                    padding: '15px 70px',
-                                    margin: '2rem auto 2rem auto',
-                                    borderRadius: '8px',
-                                    display: 'block',
-                                    fontWeight: 'bold'
-                                }}
+                            <LoadingButton
+                                onClick={() => handleLogin()}
+                                fullWidth
                                 text={'Login'}
-                                onclick={() => handleLogin()}/>
+                                sx={{color: 'white'}}
+                                size="medium"
+                                color="primary"
+                                loading={is_loading}
+                                variant="contained"
+                            >Login</LoadingButton>
                         </div>
                     </div>
                 </div>

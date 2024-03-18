@@ -1,4 +1,4 @@
-import {AdminPanelSettingsIcon, ArrowBackIosNewIcon, KeyboardArrowDownIcon, NotificationsIcon} from '~/assets/icon'
+import {AdminPanelSettingsIcon, ArrowBackIosNewIcon, KeyboardArrowDownIcon, NotificationsNoneTwoToneIcon} from '~/assets/icon'
 import avatar from '~/assets/images/thumb.jpg'
 import {Scrollbars} from 'react-custom-scrollbars-2';
 import NotificationItem from "~/layout/main-admin-layout/components/header/NotificationItem";
@@ -42,7 +42,7 @@ export default function Header() {
                 <div className="nav-item dropdown">
                     <a href="#" style={{color: 'black'}} className="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         <div className="d-inline-block div-icon-dropdown">
-                            <NotificationsIcon/>
+                            <NotificationsNoneTwoToneIcon/>
                         </div>
                         <span className="d-none d-lg-inline-flex" style={{marginLeft: '1rem'}}>Notification</span>
                         <KeyboardArrowDownIcon className="i con-arrow"/>

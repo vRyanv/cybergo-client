@@ -1,9 +1,11 @@
 import {
     DashboardTwoToneIcon,
-    TwoWheelerIcon,
+    DirectionsCarFilledTwoToneIcon,
     QuestionAnswerTwoToneIcon,
     ManageAccountsTwoToneIcon,
-    PeopleAltTwoToneIcon} from '~/assets/icon'
+    PeopleAltTwoToneIcon,
+    SportsMotorsportsTwoToneIcon
+} from '~/assets/icon'
 import {NavLink, useLocation} from "react-router-dom";
 import React from "react";
 import front from '~/assets/css/font.module.css'
@@ -33,11 +35,24 @@ export default function Navigation(){
                         <DashboardTwoToneIcon style={{marginRight: '1rem'}}/>
                         Dashboard
                     </NavLink >
+                    <NavLink
+                        to={'/user'}
+                        className={`nav-item nav-link ${location.pathname.includes('/user') ? 'active' : '' }`}
+                        onClick={onNavClicked}>
+                        <PeopleAltTwoToneIcon style={{marginRight: '1rem'}}/>
+                        User
+                    </NavLink >
                     <NavLink   to={'/driver-registration'}
                                className={`nav-item nav-link ${location.pathname.includes('/driver') ? 'active' : '' }`}
                                onClick={onNavClicked}>
-                        <TwoWheelerIcon style={{marginRight: '1rem'}}/>
+                        <SportsMotorsportsTwoToneIcon style={{marginRight: '1rem'}}/>
                         Driver
+                    </NavLink >
+                    <NavLink   to={'/vehicle'}
+                               className={`nav-item nav-link ${location.pathname.includes('/vehicle') ? 'active' : '' }`}
+                               onClick={onNavClicked}>
+                        <DirectionsCarFilledTwoToneIcon style={{marginRight: '1rem'}}/>
+                        Vehicle
                     </NavLink >
                     <NavLink
                         to={'/feedback'}
@@ -45,13 +60,6 @@ export default function Navigation(){
                         onClick={onNavClicked}>
                         <QuestionAnswerTwoToneIcon style={{marginRight: '1rem'}}/>
                         Feedback
-                    </NavLink >
-                    <NavLink
-                        to={'/account'}
-                        className={`nav-item nav-link ${location.pathname.includes('/account') ? 'active' : '' }`}
-                        onClick={onNavClicked}>
-                        <PeopleAltTwoToneIcon style={{marginRight: '1rem'}}/>
-                        Account
                     </NavLink >
                     <NavLink
                         to={'/profile'}

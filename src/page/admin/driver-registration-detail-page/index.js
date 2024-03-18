@@ -3,6 +3,8 @@ import { KeyboardReturnIcon} from '~/assets/icon'
 
 import {useState} from "react";
 
+import {UseHistoryBack} from '~/hooks'
+
 import user_list from '~/data/driver-registration.json'
 import avatar from '~/assets/images/thumb.jpg'
 import front_id_card from '~/assets/images/front-id-card.jpg'
@@ -34,14 +36,6 @@ export default function DriverRegisterPage() {
     setTimeout(() => {
         setIsLoading(false)
     }, Int.DELAY_TIMEOUT_API)
-    const onBackButtonClicked = () => {
-        window.history.back()
-    }
-    const onViewLargeImg = (img_src) => {
-        const preview_img = document.getElementById('large_image')
-        preview_img.src = img_src
-    }
-
     //refuse dialog
     const [is_open_refuse_dialog, setIsOpenRefuseDialog] = useState(false)
     const openRefuseDialogClicked = () => {
@@ -55,14 +49,13 @@ export default function DriverRegisterPage() {
 
 
     return (
-
-        <div className="container-fluid pt-4 px-4">
+        <div className="container-fluid pt-4 px-4 mb-3">
             <div className="row g-4">
                 <div className="col-sm-12 col-xl-12 header-body">
                     <div
-                        className="d-flex flex-row flex-wrap p-4 shadow rounded justify-content-between align-items-center bg-glass">
+                        className="d-flex flex-row flex-wrap p-1 shadow rounded justify-content-between align-items-center bg-glass">
                         <IconButton
-                            onClick={() => onBackButtonClicked()}
+                            onClick={UseHistoryBack}
                             color={'secondary'}
                             size="large">
                             <KeyboardReturnIcon/>

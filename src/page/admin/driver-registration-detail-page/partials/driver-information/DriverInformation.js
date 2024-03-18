@@ -1,6 +1,6 @@
 import {Stack} from "@mui/material";
 import Button from "@mui/material/Button";
-import {CancelIcon, CheckCircleIcon} from "~/assets/icon";
+import {HighlightOffTwoToneIcon, CheckCircleTwoToneIcon} from "~/assets/icon";
 
 export default function DriverInformation({   onBtnOpenRefuseDialogClicked,
                                               full_name,
@@ -8,7 +8,6 @@ export default function DriverInformation({   onBtnOpenRefuseDialogClicked,
                                               phone,
                                               address,
                                               avatar,
-                                              cv,
                                               front_id_card,
                                               back_id_card
                                           }) {
@@ -25,10 +24,10 @@ export default function DriverInformation({   onBtnOpenRefuseDialogClicked,
                     <h6 style={{width: 'fit-content'}}>Driver Information</h6>
                 </div>
                 <Stack direction="row" spacing={3}>
-                    <Button startIcon={<CheckCircleIcon/>}
+                    <Button startIcon={<CheckCircleTwoToneIcon/>}
                             variant="outlined"
                             color={'success'}>Accept</Button>
-                    <Button startIcon={<CancelIcon/>}
+                    <Button startIcon={<HighlightOffTwoToneIcon/>}
                             onClick={onBtnOpenRefuseDialogClicked }
                             variant="outlined"
                             color={'error'}>Refuse</Button>
@@ -55,7 +54,6 @@ export default function DriverInformation({   onBtnOpenRefuseDialogClicked,
                 <p className={'title-field-driver-registration rounded'}>Address</p>
                 <p className="text-dark">{address}</p>
             </div>
-            <hr/>
             <Stack
                 justifyContent="flex-start"
                 direction={'row'}
@@ -68,18 +66,7 @@ export default function DriverInformation({   onBtnOpenRefuseDialogClicked,
                         src={avatar}
                         data-bs-toggle="modal"
                         data-bs-target="#image_larger_modal"
-                        width={'100%'}
-                        className="rounded mt-2 can-zoom"/>
-                </div>
-                <div>
-                    <p className={'title-field-driver-registration rounded'}>Curriculum Vitae</p>
-                    <img
-                        alt="avatar"
-                        onClick={() => onViewLargeImg(cv)}
-                        src={cv}
-                        data-bs-toggle="modal"
-                        data-bs-target="#image_larger_modal"
-                        width={'100%'}
+                        width={'50%'}
                         className="rounded mt-2 can-zoom"/>
                 </div>
             </Stack>

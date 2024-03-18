@@ -11,9 +11,16 @@
     visibility: hidden;
 }
 
+.sidebar-toggler:hover{
+    cursor: pointer;
+}
+
+.bg-glass{
+    transition: all .5s;
+}
+
 html{
     background: white!important;
-
 }
 
 td{

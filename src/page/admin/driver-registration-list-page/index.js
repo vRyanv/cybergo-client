@@ -6,7 +6,6 @@ import {
     InputLabel,
     MenuItem,
     Select,
-    Skeleton,
     Stack,
     OutlinedInput,
     InputAdornment,
@@ -23,8 +22,9 @@ import moto from '~/assets/images/ic_moto.svg'
 import truck from '~/assets/images/ic_truck.svg'
 import {Search} from "@mui/icons-material";
 
-import {SearchIcon} from '~/assets/icon'
+import {CheckCircleIcon, SearchIcon, RefreshTwoToneIcon} from '~/assets/icon'
 import {UseNavIsClose} from "~/hooks";
+import Button from "@mui/material/Button";
 
 export default function DriverRegisterPage() {
     const is_nav_close = UseNavIsClose()
@@ -39,7 +39,6 @@ export default function DriverRegisterPage() {
         }, Int.DELAY_TIMEOUT_API)
     }
 
-    const user_list_box = useRef()
 
     return (
         <div className="container-fluid pt-4 px-4">
@@ -47,13 +46,21 @@ export default function DriverRegisterPage() {
                 <div className="col-sm-12 col-xl-12 header-body">
                     <div className="container-fluid pb-4 pt-4 px-4 bg-glass rounded"
                          style={{position: 'sticky', zIndex: '1000', top: '64px'}}>
-                        <Stack direction={{ xs: 'column', sm: 'column', md:'row'}}
+                        <Stack direction={{xs: 'column', sm: 'column', md: 'row'}}
                                justifyContent="space-between"
-                                spacing={3}>
+                               spacing={3}>
                             <h5>Driver registration</h5>
-                            <Stack direction={{ xs: 'column', sm: 'row' }}
-                            spacing={3}>
-                                <FormControl fullWidth style={{minWidth: '15rem'}} variant="outlined">
+
+                            <Stack direction={{xs: 'column', sm: 'row'}}
+                                   spacing={3}>
+                                <Button startIcon={<RefreshTwoToneIcon/>}
+                                        fullWidth
+                                        variant="outlined"
+                                        color={'info'}>Refresh</Button>
+                                <FormControl
+                                    fullWidth style={{minWidth: '15rem'}}
+                                    size="small"
+                                    variant="outlined">
                                     <InputLabel htmlFor="outlined-adornment-password">Search</InputLabel>
                                     <OutlinedInput
                                         id="outlined-adornment-password"
@@ -61,8 +68,10 @@ export default function DriverRegisterPage() {
                                         endAdornment={
                                             <InputAdornment position="end">
                                                 <IconButton
-                                                    onClick={() =>{}}
-                                                    onMouseDown={()=>{}}
+                                                    onClick={() => {
+                                                    }}
+                                                    onMouseDown={() => {
+                                                    }}
                                                     edge="end"
                                                 >
                                                     <SearchIcon/>
@@ -72,7 +81,10 @@ export default function DriverRegisterPage() {
                                         label="Password"
                                     />
                                 </FormControl>
-                                <FormControl fullWidth style={{minWidth: '15rem'}}>
+                                <FormControl
+                                    size="small"
+                                    fullWidth
+                                    style={{minWidth: '15rem'}}>
                                     <InputLabel id="demo-simple-select-label">
                                         Registration Status
                                     </InputLabel>
@@ -95,11 +107,12 @@ export default function DriverRegisterPage() {
                             </Stack>
                         </Stack>
                     </div>
-                    <div className={`bg-glass rounded p-4 mt-3 body-page ${is_nav_close ? 'full-width-body-page' : ''}`}>
+                    <div
+                        className={`bg-glass rounded p-4 mt-3 body-page ${is_nav_close ? 'full-width-body-page' : ''}`}>
                         <Scrollbars style={{minWidth: '10rem', height: '100%'}} autoHide>
                             {
                                 is_loading ? (<DriverRegistrationSkeleton/>)
-                                    : (<ul className="team" ref={user_list_box}>
+                                    : (<ul className="team">
                                         {
                                             Array.from(data_seed).map((user, index) =>
                                                 <DriverItem

@@ -2,7 +2,15 @@ import {Route, Routes} from "react-router-dom";
 
 import {SignInLayout, NotFoundLayout, MainClientLayout, MainAdminLayout} from "~/layout";
 import {SignInPage, NotFoundPage} from "~/page/common";
-import {AccountPage, DashboardPage, DriverRegistrationPage, DriverRegistrationDetailPage} from "~/page/admin";
+import {
+    UserListPage,
+    UserDetailPage,
+    DashboardPage,
+    DriverRegistrationPage,
+    DriverRegistrationDetailPage,
+    VehiclePage,
+    VehicleDetailPage,
+} from "~/page/admin";
 import {HomePage} from "~/page/client";
 import PrivateRoute from './PrivateRoute'
 import {Paths} from "~/constants";
@@ -17,7 +25,10 @@ const private_route = [
     {path: Paths.private_path.DRIVER_REGISTRATION_PATH, page: DriverRegistrationPage, layout: MainAdminLayout},
     {path: Paths.private_path.DRIVER_REGISTRATION_DETAIL_PATH, page: DriverRegistrationDetailPage, layout: MainAdminLayout},
     {path: Paths.private_path.DASHBOARD_PATH, page: DashboardPage, layout: MainAdminLayout},
-    {path: Paths.private_path.ACCOUNT_PATH, page: AccountPage, layout: MainAdminLayout}
+    {path: Paths.private_path.USER_PATH, page: UserListPage, layout: MainAdminLayout},
+    {path: Paths.private_path.USER_DETAIL_PATH, page: UserDetailPage, layout: MainAdminLayout},
+    {path: Paths.private_path.VEHICLE_PATH, page: VehiclePage, layout: MainAdminLayout},
+    {path: Paths.private_path.VEHICLE_DETAIL_PATH, page: VehicleDetailPage, layout: MainAdminLayout},
 ]
 
 function GeneratePublicRoute(route_list) {

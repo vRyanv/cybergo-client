@@ -6,8 +6,9 @@
     --black: black;
     --trans: all 0.4s ease 0s;
     --green-light: #00800021;
-    --red--light: #ff000021;
-    --blue-sky-light: #87cefa5e
+    --red-light: #ff000021;
+    --blue-sky-light: #87cefa5e;
+    --blue-light: #0000ff91
 }
 
 .bg-green-light{
@@ -15,7 +16,7 @@
 }
 
 .bg-red-light{
-    background: var(--red--light)!important;
+    background: var(--red-light)!important;
 }
 
 .bg-blue-sky-light{
@@ -194,6 +195,7 @@
     content: "REFUSED";
     background: red;
 }
+
 
 /*.co-funder:nth-of-type(even):after {*/
 /*    right: inherit;*/

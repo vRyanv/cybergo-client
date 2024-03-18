@@ -10,19 +10,16 @@ import {ThemeProvider} from '@mui/material/styles'
 import CyberGoRouter from "./route";
 import CyberTheme from './theme/cyber-theme'
 
-import TokenProvider from '~/context/UserTokenContext'
 import LoadingOverlay from '~/components/loading'
 
 function App() {
-  return(
-   <ThemeProvider theme={CyberTheme}>
-     <CssBaseline/>
-       <TokenProvider>
-           <LoadingOverlay />
-           <CyberGoRouter/>
-       </TokenProvider>
-   </ThemeProvider>
-  )
+    return (
+        <ThemeProvider theme={CyberTheme}>
+            <CssBaseline/>
+            <LoadingOverlay/>
+            <CyberGoRouter/>
+        </ThemeProvider>
+    )
 }
 
 export default App;

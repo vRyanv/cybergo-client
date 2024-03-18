@@ -4,12 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
+import {SnackbarProvider} from 'notistack'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <BrowserRouter>
-            <App/>
+            <SnackbarProvider
+                maxSnack={4}
+                anchorOrigin={{horizontal: 'right', vertical: 'bottom'}}>
+                <App/>
+            </SnackbarProvider>
         </BrowserRouter>
     </React.StrictMode>
 );

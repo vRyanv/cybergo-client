@@ -11,7 +11,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 import {
     ForwardToInboxTwoToneIcon,
-    CancelIcon
+    HighlightOffTwoToneIcon
 } from '~/assets/icon'
 import {useState} from "react";
 
@@ -56,7 +56,7 @@ export default function RefuseDialog({is_open, onClose}) {
             </DialogContent>
             <DialogActions style={{padding: '0 1.5rem 1rem 0'}}>
                 <Button disabled={is_loading}
-                        startIcon={<CancelIcon/>}
+                        startIcon={<HighlightOffTwoToneIcon/>}
                         onClick={onClose}
                         variant='outlined'
                         color={'error'}>

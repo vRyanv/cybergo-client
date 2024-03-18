@@ -42,11 +42,7 @@ export default function DriverInformation() {
                 justifyContent="space-between"
                 direction={'row'}
                 spacing={3}>
-                <div style={{width: '100%'}}>
-                    <Skeleton variant="text" sx={{ fontSize: '1rem' }}  width={60} />
-                    <Skeleton variant="rounded" width={'100%'} height={220} />
-                </div>
-                <div style={{width: '100%'}}>
+                <div style={{width: '50%'}}>
                     <Skeleton variant="text" sx={{ fontSize: '1rem' }}  width={60} />
                     <Skeleton variant="rounded" width={'100%'} height={220} />
                 </div>

@@ -15,7 +15,7 @@ export default function Index({driver_registration_id, avatar, full_name, id_num
 
     const navigate = useNavigate()
     const onDriverRegistrationClicked = (e, driver_registration_id) => {
-        navigate(`/driver-registration/${driver_registration_id}`)
+        navigate(`/driver-registration/detail/${driver_registration_id}`)
     }
 
     return (

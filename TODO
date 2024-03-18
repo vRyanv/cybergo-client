@@ -2,11 +2,21 @@ I. UI
 1. not found page: @done
 2. sign in page: @done
 3. layout admin: @done
-4. driver register page:
-5. user management:
+4. driver register page: @done
+    4.1 list: done@
+    4.2 detail: done@
+5. user:
+    5.1 list: @done
+    5.2 detail: @done
+
 6. feedback:
 8. Dashboard:
 9. profile:
+
+
+### bỏ CV
+### bỏ ID card ở driver registration detail
+đổi lại user cần xác minh cccd và CV trước khi có thể đăng ký tài xế
 
 
  <color name="seed">#FF8201</color>
