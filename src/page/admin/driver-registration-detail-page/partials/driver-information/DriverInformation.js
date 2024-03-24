@@ -2,8 +2,10 @@ import {Stack} from "@mui/material";
 import Button from "@mui/material/Button";
 import {HighlightOffTwoToneIcon, CheckCircleTwoToneIcon} from "~/assets/icon";
 
-export default function DriverInformation({   onBtnOpenRefuseDialogClicked,
+export default function DriverInformation({
+                                              onBtnOpenRefuseDialogClicked,
                                               full_name,
+                                              gender,
                                               id_number,
                                               phone,
                                               address,
@@ -28,7 +30,7 @@ export default function DriverInformation({   onBtnOpenRefuseDialogClicked,
                             variant="outlined"
                             color={'success'}>Accept</Button>
                     <Button startIcon={<HighlightOffTwoToneIcon/>}
-                            onClick={onBtnOpenRefuseDialogClicked }
+                            onClick={onBtnOpenRefuseDialogClicked}
                             variant="outlined"
                             color={'error'}>Refuse</Button>
                 </Stack>
@@ -40,6 +42,10 @@ export default function DriverInformation({   onBtnOpenRefuseDialogClicked,
                 <div className="mt-3">
                     <p className={'title-field-driver-registration rounded'}>Full Name</p>
                     <p className={`text-bg-secondary`}>{full_name}</p>
+                </div>
+                <div className="mt-3">
+                    <p className={'title-field-driver-registration rounded'}>Gender</p>
+                    <p className={`text-bg-secondary`}>{gender}</p>
                 </div>
                 <div className="mt-3">
                     <p className={'title-field-driver-registration rounded'}>Identity Number</p>

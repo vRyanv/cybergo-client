@@ -20,12 +20,12 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import MailTwoToneIcon from '@mui/icons-material/MailTwoTone';
 import BlockTwoToneIcon from '@mui/icons-material/BlockTwoTone';
 import VisibilityTwoToneIcon from '@mui/icons-material/VisibilityTwoTone';
-import SportsMotorsportsTwoToneIcon from '@mui/icons-material/SportsMotorsportsTwoTone';
+import ContactPageTwoToneIcon from '@mui/icons-material/ContactPageTwoTone';
 import DirectionsCarFilledTwoToneIcon from '@mui/icons-material/DirectionsCarFilledTwoTone';
 
 export {
     DirectionsCarFilledTwoToneIcon,
-    SportsMotorsportsTwoToneIcon,
+    ContactPageTwoToneIcon,
     VisibilityTwoToneIcon,
     BlockTwoToneIcon,
     MailTwoToneIcon,

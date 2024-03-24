@@ -7,9 +7,9 @@
     --primary-light: rgba(255, 197, 137, 0.34);
 }
 
-::-webkit-scrollbar {
-    visibility: hidden;
-}
+/*::-webkit-scrollbar {*/
+/*    visibility: hidden;*/
+/*}*/
 
 .sidebar-toggler:hover{
     cursor: pointer;

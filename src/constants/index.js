@@ -4,8 +4,10 @@ import Paths from './Paths'
 import Message from './Message'
 import DriverRegistrationStatus from './DriverRegistrationStatus'
 import Int from './Int'
+import ResourcePath from './ResourcePath'
 
 export {
+    ResourcePath,
     Int,
     DriverRegistrationStatus,
     Message,

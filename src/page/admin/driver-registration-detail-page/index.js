@@ -1,26 +1,10 @@
 import {useParams} from "react-router-dom";
 import { KeyboardReturnIcon} from '~/assets/icon'
-
-import {useState} from "react";
-
-import {UseHistoryBack} from '~/hooks'
-
-import user_list from '~/data/driver-registration.json'
-import avatar from '~/assets/images/thumb.jpg'
-import front_id_card from '~/assets/images/front-id-card.jpg'
-import back_id_card from '~/assets/images/back-id-card.png'
-import cv from '~/assets/images/cv.png'
-
-import front_driving_license from '~/assets/images/front-driving-license.jpg'
-import back_driving_license from '~/assets/images/back-driving-license.jpg'
-
-
-import car_front from '~/assets/images/car-front.png'
-import car_back from '~/assets/images/car-back.png'
-import car_left from '~/assets/images/car-left.png'
-import car_right from '~/assets/images/car-right.png'
-
+import {useEffect, useState} from "react";
+import {UseHistoryBack, UseLocalStorage} from '~/hooks'
 import {IconButton} from "@mui/material";
+import axios from 'axios'
+import {enqueueSnackbar} from 'notistack'
 
 import {
     DriverInformation, DriverInformationSkeleton,
@@ -29,13 +13,9 @@ import {
     RefuseDialog
 } from './partials'
 
-import {Int} from '~/constants'
+import {Http, ResourcePath, Int, Message} from '~/constants'
 export default function DriverRegisterPage() {
-    const {driver_registration_id} = useParams()
     const [is_loading, setIsLoading] = useState(true)
-    setTimeout(() => {
-        setIsLoading(false)
-    }, Int.DELAY_TIMEOUT_API)
     //refuse dialog
     const [is_open_refuse_dialog, setIsOpenRefuseDialog] = useState(false)
     const openRefuseDialogClicked = () => {
@@ -45,8 +25,26 @@ export default function DriverRegisterPage() {
         setIsOpenRefuseDialog(false)
     }
 
-    const [driver_detail, setDriverDetail] = useState(user_list[0])
-
+    const {driver_registration_id} = useParams()
+    const [registration_detail, setRegistrationDetail] = useState()
+    useEffect(()=> {
+        console.log('load data detail')
+        const [getLocal] = UseLocalStorage()
+        const token = getLocal(Http.USER_TOKEN)
+        axios.get(
+            `${Http.HOST}/admin/driver-registration/detail/${driver_registration_id}`,
+            {
+                headers: { 'authorization': token}
+            }
+        ).then((response) => {
+            setRegistrationDetail(response.data.driver_registration_detail)
+            setIsLoading(false)
+        }).catch((error) => {
+            console.log(error)
+            setIsLoading(false)
+            enqueueSnackbar(Message.SOMETHING_WENT_WRONG,{ variant: 'error' })
+        })
+    }, [])
 
     return (
         <div className="container-fluid pt-4 px-4 mb-3">
@@ -73,14 +71,14 @@ export default function DriverRegisterPage() {
                                 {
                                     is_loading ? (<DriverInformationSkeleton/>) : (<DriverInformation
                                         onBtnOpenRefuseDialogClicked={openRefuseDialogClicked}
-                                        full_name={driver_detail.full_name}
-                                        id_number={driver_detail.id_number}
-                                        phone={driver_detail.phone}
-                                        address={driver_detail.address}
-                                        avatar={avatar}
-                                        cv={cv}
-                                        front_id_card={front_id_card}
-                                        back_id_card={back_id_card}
+                                        full_name={registration_detail.driver.full_name}
+                                        gender={registration_detail.driver.gender}
+                                        id_number={registration_detail.driver.id_number}
+                                        phone={`${registration_detail.driver.country.prefix + registration_detail.driver.phone_number}`}
+                                        address={registration_detail.driver.address}
+                                        avatar={`${Http.HOST + ResourcePath.AVATAR_RES_PATH + registration_detail.driver.avatar}`}
+                                        front_id_card={`${Http.HOST + ResourcePath.ID_CARD_RES_PATH + registration_detail.driver.front_id_card}`}
+                                        back_id_card={`${Http.HOST + ResourcePath.ID_CARD_RES_PATH + registration_detail.driver.back_id_card}`}
                                     />)
                                 }
                             </div>
@@ -91,8 +89,8 @@ export default function DriverRegisterPage() {
                                             {
                                                 is_loading ? (<DrivingLicenseSkeleton/>)
                                                     : (<DrivingLicense
-                                                        front_driving_license={front_driving_license}
-                                                        back_driving_license={back_driving_license}/>)
+                                                        front_driving_license={`${Http.HOST + ResourcePath.DRIVER_REGISTRATION_RES_PATH + registration_detail.front_driving_license}`}
+                                                        back_driving_license={`${Http.HOST + ResourcePath.DRIVER_REGISTRATION_RES_PATH + registration_detail.back_driving_license}`}/>)
                                             }
 
                                         </div>
@@ -100,11 +98,11 @@ export default function DriverRegisterPage() {
                                             {
                                                 is_loading ? (<VehicleSkeleton/>)
                                                     : (<Vehicle
-                                                        license_plates={driver_detail.license_plates}
-                                                        car_front={car_front}
-                                                        car_back={car_back}
-                                                        car_left={car_left}
-                                                        car_right={car_right}/>)
+                                                        license_plates={registration_detail.license_plates}
+                                                        car_front={`${Http.HOST + ResourcePath.DRIVER_REGISTRATION_RES_PATH + registration_detail.front_vehicle}`}
+                                                        car_back={`${Http.HOST + ResourcePath.DRIVER_REGISTRATION_RES_PATH + registration_detail.back_vehicle}`}
+                                                        car_left={`${Http.HOST + ResourcePath.DRIVER_REGISTRATION_RES_PATH + registration_detail.left_vehicle}`}
+                                                        car_right={`${Http.HOST + ResourcePath.DRIVER_REGISTRATION_RES_PATH + registration_detail.right_vehicle}`}/>)
                                             }
                                         </div>
                                     </div>
