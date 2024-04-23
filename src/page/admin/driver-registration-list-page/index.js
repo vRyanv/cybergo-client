@@ -54,6 +54,7 @@ export default function DriverRegisterPage() {
             }
         ).then((response) => {
             setDriverRegistrations(response.data.driver_registration_list)
+            console.log(response.data.driver_registration_list)
         }).catch((error) => {
             console.log(error)
         })
@@ -146,7 +147,7 @@ export default function DriverRegisterPage() {
                                                 <DriverItem
                                                     avatar={`${Http.HOST + ResourcePath.AVATAR_RES_PATH + registration.driver.avatar}`}
                                                     vehicle_type={vehicle_types[registration.vehicle_type]}
-                                                    driver_registration_id={registration._id}
+                                                    vehicle_id={registration._id}
                                                     status={registration.status}
                                                     full_name={registration.driver.full_name}
                                                     id_number={registration.driver.id_number}

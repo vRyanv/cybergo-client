@@ -25,19 +25,19 @@ export default function DriverRegisterPage() {
         setIsOpenRefuseDialog(false)
     }
 
-    const {driver_registration_id} = useParams()
+    const {vehicle_id} = useParams()
     const [registration_detail, setRegistrationDetail] = useState()
     useEffect(()=> {
-        console.log('load data detail')
         const [getLocal] = UseLocalStorage()
         const token = getLocal(Http.USER_TOKEN)
         axios.get(
-            `${Http.HOST}/admin/driver-registration/detail/${driver_registration_id}`,
+            `${Http.HOST}/admin/driver-registration/detail/${vehicle_id}`,
             {
                 headers: { 'authorization': token}
             }
         ).then((response) => {
             setRegistrationDetail(response.data.driver_registration_detail)
+            console.log(response.data)
             setIsLoading(false)
         }).catch((error) => {
             console.log(error)
@@ -70,6 +70,7 @@ export default function DriverRegisterPage() {
                             <div className="col-sm-12 col-xl-6 ">
                                 {
                                     is_loading ? (<DriverInformationSkeleton/>) : (<DriverInformation
+                                        vehicle_id={vehicle_id}
                                         onBtnOpenRefuseDialogClicked={openRefuseDialogClicked}
                                         full_name={registration_detail.driver.full_name}
                                         gender={registration_detail.driver.gender}

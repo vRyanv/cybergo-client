@@ -3,8 +3,9 @@ import {DriverRegistrationStatus} from '~/constants'
 import {useNavigate} from "react-router-dom";
 import {Stack} from "@mui/material";
 
-export default function Index({driver_registration_id, avatar, full_name, id_number, phone, license_plates, vehicle_type, status}) {
+export default function Index({vehicle_id, avatar, full_name, id_number, phone, license_plates, vehicle_type, status}) {
     let status_classes;
+    console.log(vehicle_id)
     if (status === DriverRegistrationStatus.QUEUE) {
         status_classes = 'queue-driver-registration-status bg-blue-sky-light'
     } else if (status === DriverRegistrationStatus.ACCEPTED) {
@@ -14,12 +15,12 @@ export default function Index({driver_registration_id, avatar, full_name, id_num
     }
 
     const navigate = useNavigate()
-    const onDriverRegistrationClicked = (e, driver_registration_id) => {
-        navigate(`/driver-registration/detail/${driver_registration_id}`)
+    const onDriverRegistrationClicked = (e, vehicle_id) => {
+        navigate(`/driver-registration/detail/${vehicle_id}`)
     }
 
     return (
-        <li onClick={(e) => onDriverRegistrationClicked(e, driver_registration_id)}
+        <li onClick={(e) => onDriverRegistrationClicked(e, vehicle_id)}
             className={`member driver-registration-status ${status_classes}`}>
             <div className="thumb">
                 <img src={avatar} alt="avatar"/>

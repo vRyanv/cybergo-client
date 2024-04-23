@@ -1,8 +1,12 @@
+import axios from 'axios'
+
 import {Stack} from "@mui/material";
 import Button from "@mui/material/Button";
 import {HighlightOffTwoToneIcon, CheckCircleTwoToneIcon} from "~/assets/icon";
+import {Http} from "~/constants";
+import {UseLocalStorage} from "~/hooks";
 
-export default function DriverInformation({
+export default function DriverInformation({ vehicle_id,
                                               onBtnOpenRefuseDialogClicked,
                                               full_name,
                                               gender,
@@ -17,6 +21,23 @@ export default function DriverInformation({
         const preview_img = document.getElementById('large_image')
         preview_img.src = img_src
     }
+
+    const onAcceptBtnCLicked = () => {
+        const [getLocal] = UseLocalStorage()
+        const token = getLocal(Http.USER_TOKEN)
+        const headers  = { 'authorization': token }
+        const data = {vehicle_id}
+        axios.put(
+            `${Http.HOST}/admin/driver-registration/accept`,
+            data,
+            {headers}
+        ).then((response) => {
+
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+
     return (
         <div className="shadow rounded h-100 p-4 bg-glass">
             <Stack direction={{xs: 'column', sm: 'row'}}
@@ -27,6 +48,7 @@ export default function DriverInformation({
                 </div>
                 <Stack direction="row" spacing={3}>
                     <Button startIcon={<CheckCircleTwoToneIcon/>}
+                            onClick={onAcceptBtnCLicked}
                             variant="outlined"
                             color={'success'}>Accept</Button>
                     <Button startIcon={<HighlightOffTwoToneIcon/>}
