@@ -3,6 +3,7 @@ code {
 }
 
 .user_base{
+    font-size: xx-small;
     color: white;
     padding: .5rem;
     border-radius: 10px;
@@ -57,7 +58,7 @@ code {
 .nft .main .tokenImage {
     border-radius: 0.5rem;
     max-width: 100%;
-    height: 250px;
+    height: 130px;
     object-fit: cover;
 }
 
@@ -67,7 +68,7 @@ code {
 
 .nft .main .description {
     margin: 0.5rem 0;
-    font-size: large;
+    font-size: small;
 }
 .nft .main .tokenInfo {
     display: flex;

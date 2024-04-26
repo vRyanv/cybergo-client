@@ -1,3 +1,27 @@
+import React from 'react';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+import {VehicleTypePercentage} from "~/page/admin/dashboard-page/partials";
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+);
+
+
+
+
 export default function DashboardPage(){
     return (
         <>
@@ -30,9 +54,9 @@ export default function DashboardPage(){
             <div className="col-sm-12 col-xl-6">
                 <div className="bg-glass shadow text-center rounded p-4" >
                     <div className="form-floating mb-3">
-                        <label htmlFor="input_magazine">Academic Year Filter</label>
+                        <label htmlFor="input_magazine">Vehicle Type Percentage</label>
                     </div>
-
+                    <VehicleTypePercentage/>
                 </div>
             </div>
             <div className="col-sm-12 col-xl-6">

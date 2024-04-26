@@ -44,7 +44,6 @@ export default function Index({vehicle_id, avatar, full_name, id_number, phone, 
                         <div>{license_plates}</div>
                     </div>
                     <div className="mb-3">
-                        <label className="form-label title-info-driver">Transport Type</label>
                         <div style={{textAlign: 'center'}}>
                             <img
                                 style={{width: '50px', height: '50px'}}

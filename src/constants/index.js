@@ -5,8 +5,12 @@ import Message from './Message'
 import DriverRegistrationStatus from './DriverRegistrationStatus'
 import Int from './Int'
 import ResourcePath from './ResourcePath'
+import Role from './Role'
+import AccountStatus from './AccountStatus'
 
 export {
+    AccountStatus,
+    Role,
     ResourcePath,
     Int,
     DriverRegistrationStatus,

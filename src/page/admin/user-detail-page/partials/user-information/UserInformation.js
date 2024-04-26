@@ -1,8 +1,9 @@
-import {Stack} from "@mui/material";
+import {Rating, Stack} from "@mui/material";
 import clsx from 'clsx'
 import style from '../../../user-list-page/partials/user-card/user-card.module.css'
 
 import {UseViewLargeImg} from '~/hooks'
+import React from "react";
 
 export default function UserInformation({
                                             full_name,
@@ -18,7 +19,7 @@ export default function UserInformation({
                    justifyContent="space-between" >
                 <h6 style={{width: 'fit-content'}}>User Information</h6>
                 <div>
-                    <span className={clsx(style.user_type, style.user_base)}>Role: USER</span>
+                    <Rating name="read-only" value={5} readOnly/>
                 </div>
             </Stack>
             <hr/>

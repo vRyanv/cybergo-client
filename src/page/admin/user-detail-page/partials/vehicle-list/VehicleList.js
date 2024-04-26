@@ -12,7 +12,7 @@ export default function VehicleList(){
     return (
         <div className="col-sm-12 col-xl-12">
             <div className="shadow rounded h-100 p-4 bg-glass">
-                <h6>Vehicle</h6>
+                <h6>Vehicles</h6>
                 <hr/>
                 <ul className={'px-5'}>
                 {
@@ -34,7 +34,6 @@ export default function VehicleList(){
                                             <div>license_plates</div>
                                         </div>
                                         <div className="mb-3">
-                                            <label className="form-label title-info-driver">Type</label>
                                             <div style={{textAlign: 'center'}}>
                                                 <img
                                                     style={{width: '50px', height: '50px'}}
@@ -42,7 +41,7 @@ export default function VehicleList(){
                                                     alt="transport-type"/>
                                             </div>
                                         </div>
-                                        <div className="mb-3">
+                                        <div className="mb-2">
                                             <Button
                                             variant={'outlined'}
                                             color={'info'}

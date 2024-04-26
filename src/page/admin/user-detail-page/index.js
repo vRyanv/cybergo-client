@@ -4,9 +4,9 @@ import {
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import {KeyboardReturnIcon, BlockTwoToneIcon} from "~/assets/icon";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
-import {UseHistoryBack} from '~/hooks'
+import {UseHistoryBack, UseLocalStorage} from '~/hooks'
 import {
     UserInformation,
     UserInformationSkeleton,
@@ -17,14 +17,18 @@ import {
 } from './partials'
 
 
-import {Int} from '~/constants'
+import {Http, Int, Message} from '~/constants'
 
 import avatar from '~/assets/images/avatar/avatar1.jpg'
 import front_id_card from '~/assets/images/front-id-card.jpg'
 import back_id_card from '~/assets/images/back-id-card.png'
+import {useParams} from "react-router-dom";
+import axios from "axios";
+import {enqueueSnackbar} from "notistack";
 
 export default function AccountDetail() {
     const [is_loading, setIsLoading] = useState(true)
+    const {user_id} = useParams()
 
     setTimeout(() => {
         setIsLoading(false)

@@ -20,6 +20,17 @@ II. function (API):
     1.1 driver registration detail:
 
 
+fake UI
+    1. User
+        1.1 user manage: @done
+        1.2 user detail: @done
+    2. registration
+        2.1 list: @done
+        2.2 detail: @done
+    3. dashboard:
+        3.1 vehicle quantity %
+        3.2 rating bar chart
+        3.4 trip follow car by date bar chart
 
 ### bỏ CV
 ### bỏ ID card ở driver registration detail

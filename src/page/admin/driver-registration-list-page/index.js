@@ -34,13 +34,12 @@ export default function DriverRegisterPage() {
     const [is_loading, setIsLoading] = useState(false)
 
     const vehicle_types = {
-        Moto: moto,
+        Motorcycle: moto,
         Car: car,
         Truck: truck
     }
     const [driver_registrations, setDriverRegistrations] = useState([])
     useEffect(() => {
-        console.log('load data list')
         GetDriverRegistrationList('ALL')
     }, [])
 
@@ -75,7 +74,7 @@ export default function DriverRegisterPage() {
             <div className="row g-4">
                 <div className="col-sm-12 col-xl-12 header-body">
                     <div className="container-fluid pb-4 pt-4 px-4 bg-glass rounded"
-                         style={{position: 'sticky', zIndex: '1000', top: '64px'}}>
+                         style={{position: 'sticky', zIndex: '1000', top: '82px'}}>
                         <Stack direction={{xs: 'column', sm: 'column', md: 'row'}}
                                justifyContent="space-between"
                                spacing={3}>
@@ -136,9 +135,7 @@ export default function DriverRegisterPage() {
                             </Stack>
                         </Stack>
                     </div>
-                    <div
-                        className={`bg-glass rounded p-4 mt-3 body-page ${is_nav_close ? 'full-width-body-page' : ''}`}>
-                        <Scrollbars style={{minWidth: '10rem', height: '100%'}} autoHide>
+                    <div className={`container-fluid bg-glass rounded p-4 mt-3 body-page}`}>
                             {
                                 is_loading ? (<DriverRegistrationSkeleton/>)
                                     : (<ul className="team">
@@ -157,7 +154,6 @@ export default function DriverRegisterPage() {
                                         }
                                     </ul>)
                             }
-                        </Scrollbars>
                     </div>
                 </div>
             </div>

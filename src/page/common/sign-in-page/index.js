@@ -64,8 +64,8 @@ export default function SignInPage() {
             if(response.data.code === StatusCode.OK){
                 navigate("/");
                 const [getLocal, saveLocal] = UseLocalStorage()
-                console.log(saveLocal)
                 saveLocal(Http.USER_TOKEN, response.data.token)
+                saveLocal(Http.ROLE, response.data.role)
             } else {
                 alert('login fail')
             }
