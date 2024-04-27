@@ -1,10 +1,9 @@
 import {
     DashboardTwoToneIcon,
-    DirectionsCarFilledTwoToneIcon,
     QuestionAnswerTwoToneIcon,
     ManageAccountsTwoToneIcon,
     PeopleAltTwoToneIcon,
-    ContactPageTwoToneIcon
+    ContactPageTwoToneIcon, VehicleIcon
 } from '~/assets/icon'
 import {NavLink, useLocation} from "react-router-dom";
 import React from "react";
@@ -47,19 +46,6 @@ export default function Navigation(){
                                onClick={onNavClicked}>
                         <ContactPageTwoToneIcon style={{marginRight: '1rem'}}/>
                         Registration
-                    </NavLink >
-                    <NavLink   to={'/vehicle'}
-                               className={`nav-item nav-link ${location.pathname.includes('/vehicle') ? 'active' : '' }`}
-                               onClick={onNavClicked}>
-                        <DirectionsCarFilledTwoToneIcon style={{marginRight: '1rem'}}/>
-                        Vehicle
-                    </NavLink >
-                    <NavLink
-                        to={'/feedback'}
-                        className={`nav-item nav-link ${location.pathname.includes('/feedback') ? 'active' : '' }`}
-                        onClick={onNavClicked}>
-                        <QuestionAnswerTwoToneIcon style={{marginRight: '1rem'}}/>
-                        Feedback
                     </NavLink >
                     <NavLink
                         to={'/profile'}

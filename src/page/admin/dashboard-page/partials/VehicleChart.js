@@ -7,11 +7,10 @@ export const data = {
     labels,
     datasets: [
         {
-            label: 'Dataset 1',
-            data: [10],
-            backgroundColor: [
-                'rgba(255, 121, 0, 0.5)',
-            ]
+            label: 'Vehicle quantity',
+            data: [10, 20,30],
+            borderColor: '#FF6347',
+            backgroundColor: 'rgba(255,130,1,0.8)',
         }
     ],
 };
@@ -19,17 +18,22 @@ export const data = {
 
 export const options = {
     responsive: true,
+    elements: {
+        bar: {
+            borderWidth: 3,
+        },
+    },
     plugins: {
         legend: {
             position: 'top',
         },
         title: {
             display: true,
-            text: 'Chart.js Bar Chart',
+            text: 'Vehicle quantity by type',
         },
     },
 };
 
-export default function VehicleTypePercentage() {
+export default function VehicleChart() {
     return <Bar options={options} data={data}/>
 }

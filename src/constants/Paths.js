@@ -11,8 +11,6 @@ const paths = {
         DASHBOARD_PATH: '/dashboard',
         USER_PATH: '/user',
         USER_DETAIL_PATH: '/user/detail/:user_id',
-        VEHICLE_PATH: '/vehicle',
-        VEHICLE_DETAIL_PATH: '/vehicle/detail/:vehicle_id',
     }
 }
 

@@ -8,8 +8,6 @@ import {
     DashboardPage,
     DriverRegistrationPage,
     DriverRegistrationDetailPage,
-    VehiclePage,
-    VehicleDetailPage,
 } from "~/page/admin";
 import {HomePage} from "~/page/client";
 import PrivateRoute from './PrivateRoute'
@@ -27,8 +25,6 @@ const private_route = [
     {path: Paths.private_path.DASHBOARD_PATH, page: DashboardPage, layout: MainAdminLayout},
     {path: Paths.private_path.USER_PATH, page: UserListPage, layout: MainAdminLayout},
     {path: Paths.private_path.USER_DETAIL_PATH, page: UserDetailPage, layout: MainAdminLayout},
-    {path: Paths.private_path.VEHICLE_PATH, page: VehiclePage, layout: MainAdminLayout},
-    {path: Paths.private_path.VEHICLE_DETAIL_PATH, page: VehicleDetailPage, layout: MainAdminLayout},
 ]
 
 function GeneratePublicRoute(route_list) {

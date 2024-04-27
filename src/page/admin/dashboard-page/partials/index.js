@@ -1,6 +1,8 @@
-import VehicleTypePercentage from './VehicleTypePercentage'
+import VehicleChart from './VehicleChart'
+import TripChart from './TripChart'
 
 
 export {
-    VehicleTypePercentage
+    VehicleChart,
+    TripChart
 }
