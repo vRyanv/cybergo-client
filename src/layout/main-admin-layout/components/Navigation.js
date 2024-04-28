@@ -47,13 +47,6 @@ export default function Navigation(){
                         <ContactPageTwoToneIcon style={{marginRight: '1rem'}}/>
                         Registration
                     </NavLink >
-                    <NavLink
-                        to={'/profile'}
-                        className={`nav-item nav-link ${location.pathname.includes('/profile') ? 'active' : '' }`}
-                        onClick={onNavClicked}>
-                        <ManageAccountsTwoToneIcon style={{marginRight: '1rem'}}/>
-                        Profile
-                    </NavLink >
                 </div>
             </nav>
         </div>

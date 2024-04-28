@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import {Stack} from "@mui/material";
 import Button from "@mui/material/Button";
-import {HighlightOffTwoToneIcon, CheckCircleTwoToneIcon} from "~/assets/icon";
+import {HighlightOffTwoToneIcon, CheckIcon} from "~/assets/icon";
 import {Http} from "~/constants";
 import {UseLocalStorage} from "~/hooks";
 
@@ -47,7 +47,7 @@ export default function DriverInformation({ vehicle_id,
                     <h6 style={{width: 'fit-content'}}>Driver Information</h6>
                 </div>
                 <Stack direction="row" spacing={3}>
-                    <Button startIcon={<CheckCircleTwoToneIcon/>}
+                    <Button startIcon={<CheckIcon/>}
                             onClick={onAcceptBtnCLicked}
                             variant="outlined"
                             color={'success'}>Accept</Button>

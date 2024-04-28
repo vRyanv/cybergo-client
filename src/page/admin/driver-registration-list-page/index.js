@@ -135,7 +135,7 @@ export default function DriverRegisterPage() {
                             </Stack>
                         </Stack>
                     </div>
-                    <div className={`container-fluid bg-glass rounded p-4 mt-3 body-page}`}>
+                    <div className={`container-fluid bg-glass rounded p-4 mt-3 body-page`} style={{minHeight:'75vh'}}>
                             {
                                 is_loading ? (<DriverRegistrationSkeleton/>)
                                     : (<ul className="team">

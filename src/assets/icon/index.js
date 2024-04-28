@@ -23,8 +23,10 @@ import VisibilityTwoToneIcon from '@mui/icons-material/VisibilityTwoTone';
 import ContactPageTwoToneIcon from '@mui/icons-material/ContactPageTwoTone';
 import DirectionsCarFilledTwoToneIcon from '@mui/icons-material/DirectionsCarFilledTwoTone';
 import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
+import ModeEditOutlineTwoToneIcon from '@mui/icons-material/ModeEditOutlineTwoTone';
 
 export {
+    ModeEditOutlineTwoToneIcon as Pencil,
     WhereToVoteIcon as TripIcon,
     DirectionsCarFilledTwoToneIcon as VehicleIcon,
     ContactPageTwoToneIcon,
@@ -37,7 +39,7 @@ export {
     RefreshTwoToneIcon,
     SearchIcon,
     ForwardToInboxTwoToneIcon,
-    CheckCircleTwoToneIcon,
+    CheckCircleTwoToneIcon as CheckIcon,
     HighlightOffTwoToneIcon,
     KeyboardReturnIcon,
     ArrowBackIosNewIcon,

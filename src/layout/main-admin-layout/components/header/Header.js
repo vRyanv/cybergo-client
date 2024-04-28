@@ -1,9 +1,20 @@
 import {AdminPanelSettingsIcon, ArrowBackIosNewIcon, KeyboardArrowDownIcon, NotificationsNoneTwoToneIcon} from '~/assets/icon'
-import avatar from '~/assets/images/thumb.jpg'
+import avatar_admin from '~/assets/images/avatar/admin_avatar.jpg'
 import {Scrollbars} from 'react-custom-scrollbars-2';
 import NotificationItem from "~/layout/main-admin-layout/components/header/NotificationItem";
-
+import avatar_notify from '~/assets/images/avatar/truc.jpg'
+import {useState} from "react";
+import ProfileDialog from "./ProfileDialog";
 export default function Header() {
+    const [is_open_profile_dialog, setIsOpenProfileDialog] = useState(false)
+
+    const onCloseProfileDialog = () => {
+        setIsOpenProfileDialog(false)
+    }
+    const onProfileClicked = () => {
+        setIsOpenProfileDialog(true)
+    }
+
     const onMenuClicked = (e) => {
         const side_bar = document.getElementsByClassName('sidebar')
         const content = document.getElementsByClassName('content')
@@ -49,28 +60,28 @@ export default function Header() {
                     </a>
                     <div
                         className="dropdown-menu dropdown-menu-end border-0 rounded m-0"
-                        data-bs-popper="none" style={{width: 'fit-content'}}>
+                        data-bs-popper="none" style={{minWidth: '17rem'}}>
                         <Scrollbars style={{minWidth: '10rem', height: 300}}  autoHide>
                             {
-                                Array.from([1,2,3,4]).map((a, index) => <NotificationItem key={index} content={'hello'} from={'khang'}/>)
+                                Array.from([1]).map((a, index) => <NotificationItem key={index} avatar={avatar_notify} content={'vehicle registration'} from={'Le Truc'}/>)
                             }
                         </Scrollbars>
                     </div>
                 </div>
-                <a href="" className="nav-item dropdown">
+                <a href="#" className="nav-item dropdown">
                     <div style={{color: 'black'}} className="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <img className="rounded-circle me-lg-2" src={avatar} alt="avatar"
+                        <img className="rounded-circle me-lg-2" src={avatar_admin} alt="avatar"
                              style={{width: '40px', height: '40px'}}/>
-                        <span className="d-none d-lg-inline-flex" style={{marginLeft: '1rem'}}>Johsn Doe</span>
+                        <span className="d-none d-lg-inline-flex" style={{marginLeft: '1rem'}}>Admin</span>
                         <KeyboardArrowDownIcon className="icon-arrow"/>
                     </div>
                     <div className="dropdown-menu dropdown-menu-end border-0 rounded m-0">
-                        <div className="dropdown-item">My Profile</div>
-                        <div className="dropdown-item">Settings</div>
+                        <div className="dropdown-item" onClick={onProfileClicked}>Profile</div>
                         <div className="dropdown-item">Log Out</div>
                     </div>
                 </a>
             </div>
+            <ProfileDialog is_open={is_open_profile_dialog} onClose={onCloseProfileDialog}/>
         </nav>
     )
 }
