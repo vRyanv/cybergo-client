@@ -1,0 +1,90 @@
+[{
+  "_id": {
+    "$oid": "662d0ef9a70eee4a0cb2079b"
+  },
+  "driver": {
+    "$oid": "662cbdab4fe9b4098560e9ef"
+  },
+  "vehicle_name": "BWW I8",
+  "vehicle_type": "Car",
+  "license_plates": "51F-970.22",
+  "registration_date": {
+    "$date": "2024-04-27T14:43:05.026Z"
+  },
+  "front_vehicle_registration_certificate": "1714228970196IMG_1714212880086_1714213002648.jpg",
+  "back_vehicle_registration_certificate": "1714228970196IMG_1714212880086_1714213002648.jpg",
+  "front_driving_license": "1714228982442IMG_1714228713561_1714228727853.jpg",
+  "back_driving_license": "1714228982968IMG_1714212900311_1714213003091.jpg",
+  "front_vehicle": "1714228983132IMG_1714212930329_1714213003804.jpg",
+  "back_vehicle": "1714228983603IMG_1714212945705_1714213004269.jpg",
+  "right_vehicle": "1714228983929IMG_1714212953352_1714213004523.jpg",
+  "left_vehicle": "1714228984315IMG_1714212938532_1714213004035.jpg",
+  "status": "ACCEPTED",
+  "createdAt": {
+    "$date": "2024-04-27T14:43:05.030Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-27T15:03:54.136Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662df366292ad3404fca691d"
+  },
+  "driver": {
+    "$oid": "662cbdab4fe9b4098560e9ef"
+  },
+  "vehicle_name": "Mazda E 2200",
+  "vehicle_type": "Truck",
+  "license_plates": "35 TLD 82",
+  "registration_date": {
+    "$date": "2024-04-28T06:57:42.879Z"
+  },
+  "front_vehicle_registration_certificate": "1714287439928IMG_1714212880086_1714213002648.jpg",
+  "back_vehicle_registration_certificate": "1714287439928IMG_1714212880086_1714213002648.jpg",
+  "front_driving_license": "1714287458695IMG_1714228713561_1714228727853.jpg",
+  "back_driving_license": "1714287459512IMG_1714212900311_1714213003091.jpg",
+  "front_vehicle": "1714287459695IMG_1714286876932_1714286909121.jpg",
+  "back_vehicle": "1714287460008IMG_1714286876931_1714286909313.jpg",
+  "right_vehicle": "1714287461027IMG_1714286876934_1714286908520.jpg",
+  "left_vehicle": "1714287462117IMG_1714286876933_1714286908745.jpg",
+  "status": "ACCEPTED",
+  "createdAt": {
+    "$date": "2024-04-28T06:57:42.888Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-28T07:00:02.935Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "662df692292ad3404fca6947"
+  },
+  "driver": {
+    "$oid": "662cbdab4fe9b4098560e9ef"
+  },
+  "vehicle_name": "Triocar",
+  "vehicle_type": "Motorcycle",
+  "license_plates": "9197JZR",
+  "registration_date": {
+    "$date": "2024-04-28T07:11:14.957Z"
+  },
+  "front_vehicle_registration_certificate": "1714288250200IMG_1714212880086_1714213002648.jpg",
+  "back_vehicle_registration_certificate": "1714288250200IMG_1714212880086_1714213002648.jpg",
+  "front_driving_license": "1714288266637IMG_1714228713561_1714228727853.jpg",
+  "back_driving_license": "1714288270094IMG_1714212900311_1714213003091.jpg",
+  "front_vehicle": "1714288270096IMG_1714286856911_1714286904188.jpg",
+  "back_vehicle": "1714288270096IMG_1714286856905_1714286904418.jpg",
+  "right_vehicle": "1714288274086IMG_1714286856913_1714286903698.jpg",
+  "left_vehicle": "1714288274088IMG_1714286856912_1714286903847.jpg",
+  "status": "ACCEPTED",
+  "createdAt": {
+    "$date": "2024-04-28T07:11:14.966Z"
+  },
+  "updatedAt": {
+    "$date": "2024-04-28T07:13:14.020Z"
+  },
+  "__v": 0
+}]

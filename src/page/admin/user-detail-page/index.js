@@ -17,22 +17,46 @@ import {
 } from './partials'
 
 
-import {Http, Int, Message} from '~/constants'
+import {Http, Int, Message, StatusCode} from '~/constants'
 
-import avatar from '~/assets/images/avatar/avatar1.jpg'
+import avatar from '~/assets/images/avatar/truc.jpg'
 import front_id_card from '~/assets/images/front-id-card.jpg'
 import back_id_card from '~/assets/images/back-id-card.png'
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {enqueueSnackbar} from "notistack";
 
 export default function AccountDetail() {
+    const navigate = useNavigate()
     const [is_loading, setIsLoading] = useState(true)
-    const {user_id} = useParams()
+    const [user_detail, setUserDetail] = useState()
 
-    setTimeout(() => {
-        setIsLoading(false)
-    }, Int.DELAY_TIMEOUT_API)
+    const {user_id} = useParams()
+    useEffect(()=> {
+        const [getLocal] = UseLocalStorage()
+        const token = getLocal(Http.USER_TOKEN)
+        axios.get(
+            `${Http.HOST}/admin/user-management/detail/${user_id}`,
+            {
+                headers: {'authorization': token}
+            }
+        ).then((response) => {
+            if(response.data.code !== StatusCode.OK){
+                navigate('/not-found')
+                return
+            }
+            setTimeout(() => {
+                setUserDetail({
+                    user: response.data.user,
+                    vehicles: response.data.vehicles,
+                })
+                setIsLoading(false)
+            }, Int.DELAY_TIMEOUT_API)
+        }).catch((error) => {
+            console.log(error)
+            setIsLoading(false)
+        })
+    }, [])
 
     return (
         <div className="container-fluid pt-4 px-4 mb-3">
@@ -67,13 +91,12 @@ export default function AccountDetail() {
                                 {
                                     is_loading ? (<UserInformationSkeleton/>)
                                         : (<UserInformation
-                                            id_number={'12378465123'}
-                                            full_name={'Ryan G'}
-                                            phone={'0374463592'}
-                                            address={'somewhere'}
-                                            avatar={avatar}
-                                            front_id_card={front_id_card}
-                                            back_id_card={back_id_card}
+                                            id_number={user_detail.user.id_number}
+                                            full_name={user_detail.user.full_name}
+                                            phone={user_detail.user.country.prefix + user_detail.user.phone_number}
+                                            address={user_detail.user.address}
+                                            avatar={user_detail.user.avatar}
+                                            start={user_detail.user.rating}
                                         />)
                                 }
                             </div>
@@ -81,8 +104,8 @@ export default function AccountDetail() {
                                 {
                                     is_loading ? (<IdentityCardSkeleton/>)
                                         : (<IdentityCard
-                                            front_id_card={front_id_card}
-                                            back_id_card={back_id_card}
+                                            front_id_card={user_detail.user.front_id_card}
+                                            back_id_card={user_detail.user.back_id_card}
                                         />)
                                 }
                             </div>
@@ -90,7 +113,7 @@ export default function AccountDetail() {
                     </div>
                 </div>
                 {
-                    is_loading ? (<VehicleListSkeleton/>) : (<VehicleList/>)
+                    is_loading ? (<VehicleListSkeleton/>) : (<VehicleList vehicles={user_detail.vehicles}/>)
                 }
             </div>
         </div>

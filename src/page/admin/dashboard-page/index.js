@@ -49,7 +49,7 @@ export default function DashboardPage() {
                                     <div>
                                         <p className="mb-2">Total user</p>
                                         <h6 className="mb-0 text-end ms-5">
-                                            123
+                                            2
                                         </h6>
                                     </div>
                                 </Stack>
@@ -64,7 +64,7 @@ export default function DashboardPage() {
                                     <div>
                                         <p className="mb-2">Total trip</p>
                                         <h6 className="mb-0 text-end">
-                                            123
+                                            4
                                         </h6>
                                     </div>
                                 </Stack>
@@ -79,7 +79,7 @@ export default function DashboardPage() {
                                     <div>
                                         <p className="mb-2">Total vehicle</p>
                                         <h6 className="mb-0 text-end">
-                                            123
+                                            3
                                         </h6>
                                     </div>
                                 </Stack>

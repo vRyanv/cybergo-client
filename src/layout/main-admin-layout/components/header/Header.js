@@ -1,10 +1,17 @@
-import {AdminPanelSettingsIcon, ArrowBackIosNewIcon, KeyboardArrowDownIcon, NotificationsNoneTwoToneIcon} from '~/assets/icon'
+import {
+    AdminPanelSettingsIcon,
+    ArrowBackIosNewIcon,
+    KeyboardArrowDownIcon,
+    NotificationsNoneTwoToneIcon
+} from '~/assets/icon'
 import avatar_admin from '~/assets/images/avatar/admin_avatar.jpg'
-import {Scrollbars} from 'react-custom-scrollbars-2';
-import NotificationItem from "~/layout/main-admin-layout/components/header/NotificationItem";
-import avatar_notify from '~/assets/images/avatar/truc.jpg'
-import {useState} from "react";
+import React, {useState} from "react";
 import ProfileDialog from "./ProfileDialog";
+import {NavLink, useNavigate} from "react-router-dom";
+import {UseLocalStorage} from "~/hooks";
+import {Http} from "~/constants";
+import {useSocket} from "~/service/socket/SocketService";
+import Notifications from "./notification/Notifications";
 export default function Header() {
     const [is_open_profile_dialog, setIsOpenProfileDialog] = useState(false)
 
@@ -36,6 +43,15 @@ export default function Header() {
         }
     }
 
+    const socket = useSocket()
+    const navigate = useNavigate();
+    const onLogout = () => {
+        const [getLocal, saveLocal] = UseLocalStorage()
+        saveLocal(Http.USER_TOKEN, "")
+        saveLocal(Http.ROLE, "")
+        socket.close()
+        navigate('/sign-in')
+    }
     return (
         <nav style={{padding: '1rem!important'}}
              className="navbar navbar-expand navbar-dark sticky-top bg-glass">
@@ -61,14 +77,10 @@ export default function Header() {
                     <div
                         className="dropdown-menu dropdown-menu-end border-0 rounded m-0"
                         data-bs-popper="none" style={{minWidth: '17rem'}}>
-                        <Scrollbars style={{minWidth: '10rem', height: 300}}  autoHide>
-                            {
-                                Array.from([1]).map((a, index) => <NotificationItem key={index} avatar={avatar_notify} content={'vehicle registration'} from={'Le Truc'}/>)
-                            }
-                        </Scrollbars>
+                        <Notifications/>
                     </div>
                 </div>
-                <a href="#" className="nav-item dropdown">
+                <div  className="nav-item dropdown cursor-pointer">
                     <div style={{color: 'black'}} className="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                         <img className="rounded-circle me-lg-2" src={avatar_admin} alt="avatar"
                              style={{width: '40px', height: '40px'}}/>
@@ -77,9 +89,14 @@ export default function Header() {
                     </div>
                     <div className="dropdown-menu dropdown-menu-end border-0 rounded m-0">
                         <div className="dropdown-item" onClick={onProfileClicked}>Profile</div>
-                        <div className="dropdown-item">Log Out</div>
+                        <NavLink
+                            to={'/enable-f2a'}
+                            className="dropdown-item">
+                            F2A
+                        </NavLink >
+                        <div className="dropdown-item" onClick={onLogout}>Log Out</div>
                     </div>
-                </a>
+                </div>
             </div>
             <ProfileDialog is_open={is_open_profile_dialog} onClose={onCloseProfileDialog}/>
         </nav>

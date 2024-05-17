@@ -1,14 +1,21 @@
 import React from "react";
-import data from '~/data/driver-registration.json'
 import {Stack} from "@mui/material";
 
-import car_front from '~/assets/images/car-front.png'
-import vehicle_type from '~/assets/images/ic_truck.svg'
+import truck from '~/assets/images/ic_truck.svg'
+import moto from '~/assets/images/ic_moto.svg'
+import car from '~/assets/images/ic_car.svg'
 import Button from "@mui/material/Button";
 
 import {VisibilityTwoToneIcon} from '~/assets/icon'
-export default function VehicleList(){
+import {Http, ResourcePath} from "~/constants";
+const type_list = {
+    "Truck":truck,
+    "Motorcycle":moto,
+    "Car":car
+}
 
+
+export default function VehicleList({vehicles}){
     return (
         <div className="col-sm-12 col-xl-12">
             <div className="shadow rounded h-100 p-4 bg-glass">
@@ -16,13 +23,13 @@ export default function VehicleList(){
                 <hr/>
                 <ul className={'px-5'}>
                 {
-                    data.map((d, index)=> {
+                    vehicles.map((vehicle, index)=> {
                         return (
                             <li key={index}
                                 style={{cursor: 'default'}}
                                 className={`member driver-registration-status bg-green-light`}>
                                 <div className="thumb">
-                                    <img src={car_front} alt="avatar"/>
+                                    <img src={String(Http.HOST + ResourcePath.DRIVER_REGISTRATION_RES_PATH + vehicle.front_vehicle)} alt="front vehicle"/>
                                 </div>
                                 <div className="description">
                                     <Stack
@@ -30,22 +37,26 @@ export default function VehicleList(){
                                         justifyContent="space-around"
                                         direction={{xs: 'column', sm: 'row'}}>
                                         <div className="mb-3">
+                                            <label className="form-label title-info-driver">Name</label>
+                                            <div>{vehicle.vehicle_name}</div>
+                                        </div>
+                                        <div className="mb-3">
                                             <label className="form-label title-info-driver">License Plates</label>
-                                            <div>license_plates</div>
+                                            <div>{vehicle.license_plates}</div>
                                         </div>
                                         <div className="mb-3">
                                             <div style={{textAlign: 'center'}}>
                                                 <img
                                                     style={{width: '50px', height: '50px'}}
-                                                    src={vehicle_type}
+                                                    src={type_list[vehicle.vehicle_type]}
                                                     alt="transport-type"/>
                                             </div>
                                         </div>
                                         <div className="mb-2">
                                             <Button
-                                            variant={'outlined'}
-                                            color={'info'}
-                                            startIcon={<VisibilityTwoToneIcon/>}
+                                                variant={'outlined'}
+                                                color={'info'}
+                                                startIcon={<VisibilityTwoToneIcon/>}
                                             >View more</Button>
                                         </div>
                                     </Stack>

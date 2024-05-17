@@ -1,7 +1,7 @@
 import {Route, Routes} from "react-router-dom";
 
 import {SignInLayout, NotFoundLayout, MainClientLayout, MainAdminLayout} from "~/layout";
-import {SignInPage, NotFoundPage} from "~/page/common";
+import {SignInPage, NotFoundPage, EnableF2APage, VerifyF2APage} from "~/page/common";
 import {
     UserListPage,
     UserDetailPage,
@@ -25,6 +25,8 @@ const private_route = [
     {path: Paths.private_path.DASHBOARD_PATH, page: DashboardPage, layout: MainAdminLayout},
     {path: Paths.private_path.USER_PATH, page: UserListPage, layout: MainAdminLayout},
     {path: Paths.private_path.USER_DETAIL_PATH, page: UserDetailPage, layout: MainAdminLayout},
+    {path: Paths.private_path.ENABLE_F2A_PATH, page: EnableF2APage, layout: MainAdminLayout},
+    {path: Paths.private_path.VERIFY_F2A_PATH, page: VerifyF2APage, layout: MainClientLayout},
 ]
 
 function GeneratePublicRoute(route_list) {

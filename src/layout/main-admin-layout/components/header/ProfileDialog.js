@@ -89,7 +89,7 @@ export default function ProfileDialog({is_open, onClose}){
                         <OutlinedInput
                             id="outlined-adornment-password"
                             type={'password'}
-                            label="Full name"
+                            label="Current password"
                         />
                     </FormControl>
                     <FormControl
@@ -100,7 +100,7 @@ export default function ProfileDialog({is_open, onClose}){
                         <OutlinedInput
                             id="outlined-adornment-password"
                             type={'password'}
-                            label="onfirm password"
+                            label="New password"
                         />
                     </FormControl>
                     <FormControl
@@ -111,7 +111,7 @@ export default function ProfileDialog({is_open, onClose}){
                         <OutlinedInput
                             id="outlined-adornment-password"
                             type={'password'}
-                            label="onfirm password"
+                            label="Confirm password"
                         />
                     </FormControl>
                 </Stack>

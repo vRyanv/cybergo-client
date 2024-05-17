@@ -15,12 +15,12 @@ import {
 import {Http, Message, ResourcePath} from '~/constants'
 import {useNavigate} from "react-router-dom";
 
-export default function UserCard({avatar, full_name, id_number, phone, email, rating, acc_status}) {
+export default function UserCard({user_id, avatar, full_name, id_number, phone, email, rating, acc_status}) {
     const navigate = useNavigate()
     const onUserCardClicked = function (e) {
         const node_names = ['BUTTON', 'IMG', 'svg', 'path']
         if (!node_names.includes(e.target.nodeName)) {
-            navigate(`/user/detail/${123}`)
+            navigate(`/user/detail/${user_id}`)
         }
     }
 

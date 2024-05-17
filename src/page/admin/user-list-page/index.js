@@ -11,37 +11,61 @@ import {
 import {RefreshTwoToneIcon, SearchIcon} from "~/assets/icon";
 
 import Button from "@mui/material/Button";
-import {AccountStatus, Int} from "~/constants";
-import React, {useState} from "react";
-import {UseNavIsClose} from "~/hooks";
+import {AccountStatus, Http, Int} from "~/constants";
+import React, {useEffect, useState} from "react";
+import {UseLocalStorage, UseNavIsClose} from "~/hooks";
 
 import {UserCard, UserCardSkeleton} from './partials'
 
 import user_data from '~/data/user.json'
+import axios from "axios";
 
 export default function UserListPage() {
-    const [is_loading, setIsLoading] = useState(true)
-    setTimeout(()=>{
-        setIsLoading(false)
-    }, Int.DELAY_TIMEOUT_API)
-    const [user_list, setUserList] = useState(user_data)
+    const [is_loading, setIsLoading] = useState(false)
+    const [userList, setUserList] = useState([])
+    const [userListDisplay, setUserListDisplay] = useState([])
+    const [userSearchList, setUserSearchList] = useState([])
+
+    useEffect(() => {
+        GetUserList(AccountStatus.ALL)
+    }, [])
+
+    const GetUserList = (status) => {
+        setIsLoading(true)
+        const [getLocal] = UseLocalStorage()
+        const token = getLocal(Http.USER_TOKEN)
+        axios.get(
+            `${Http.HOST}/admin/user-management/list/${status}`,
+            {
+                headers: { 'authorization': token}
+            }
+        ).then((response) => {
+            setTimeout(()=>{
+                setUserList(response.data.user_list)
+                setUserListDisplay(response.data.user_list)
+                setIsLoading(false)
+            }, Int.DELAY_TIMEOUT_API)
+        }).catch((error) => {
+            console.log(error)
+            setIsLoading(false)
+        })
+    }
 
     const [status_selection, setStatusSelection] = useState(AccountStatus.ALL)
     const onChangeAccountStatusFilter = (e) => {
         setStatusSelection(e.target.value)
-        setUserList(user_data.filter(user => user.account_status === e.target.value))
-        setIsLoading(true)
-        setTimeout(() => {
-            setIsLoading(false)
-        }, Int.DELAY_TIMEOUT_API)
+        GetUserList(e.target.value)
     }
-    const [search_name, setSearchName] = useState("")
+    const [searchName, setSearchName] = useState("")
+
     const onSearchAccountByName = () => {
-        setUserList(user_data.filter(user => user.full_name.toLowerCase().includes(search_name)))
+        const find_name_list = userList.filter(user => user.full_name.toLowerCase().includes(searchName) || user.phone_number.includes(searchName))
+        setUserListDisplay(find_name_list)
     }
 
     const onRefresh = () => {
-        setUserList(user_data)
+        setStatusSelection(AccountStatus.ALL)
+        GetUserList(AccountStatus.ALL)
     }
 
     return (
@@ -67,7 +91,7 @@ export default function UserListPage() {
                                     <OutlinedInput
                                         id="outlined-adornment-password"
                                         type={'text'}
-                                        value={search_name}
+                                        value={searchName}
                                         endAdornment={
                                             <InputAdornment position="end">
                                                 <IconButton
@@ -112,14 +136,15 @@ export default function UserListPage() {
                                     {
                                         is_loading ? (<UserCardSkeleton/>)
                                             : (
-                                                user_list.map((user, index) => {
+                                                userListDisplay.map((user, index) => {
                                             return (
                                                 <UserCard
                                                     key={index}
+                                                    user_id={user._id}
                                                     avatar={user.avatar}
                                                     id_number={user.id_number}
                                                     full_name={user.full_name}
-                                                    phone={user.phone_number}
+                                                    phone={user.country.prefix + user.phone_number}
                                                     email={user.email}
                                                     role={user.role}
                                                     rating={user.rating}

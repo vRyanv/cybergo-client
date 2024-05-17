@@ -12,7 +12,7 @@ export default function VehicleList(){
                 {
                     data.map((d, index)=> {
                         return (
-                                <Box sx={{display: 'flex', alignItems: 'center'}}>
+                                <Box sx={{display: 'flex', alignItems: 'center'}} key={index}>
                                     <Box sx={{margin: 1}}>
                                         <Skeleton variant="rounded"
                                                   width={150}

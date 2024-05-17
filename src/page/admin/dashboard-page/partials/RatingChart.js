@@ -18,8 +18,8 @@ import { Bar } from 'react-chartjs-2';
     },
 };
 
-const labels = ['khangok1610@gmail.com', 'kien', 'nhan', 'truc', 'khanh', 'duy', 'lap'];
-const values = [333, 250, 200,100, 50, 10,5]
+const labels = ['letruc2108@gmail.com', 'khangok1610@gmail.com', 'user1@gmail.com'];
+const values = [10, 5]
 const data = {
     labels,
     datasets: [

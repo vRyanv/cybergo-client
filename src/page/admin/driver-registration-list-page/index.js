@@ -31,7 +31,7 @@ import Button from "@mui/material/Button";
 
 export default function DriverRegisterPage() {
     const is_nav_close = UseNavIsClose()
-    const [is_loading, setIsLoading] = useState(false)
+    const [is_loading, setIsLoading] = useState(true)
 
     const vehicle_types = {
         Motorcycle: moto,
@@ -52,10 +52,13 @@ export default function DriverRegisterPage() {
                 headers: { 'authorization': token}
             }
         ).then((response) => {
-            setDriverRegistrations(response.data.driver_registration_list)
-            console.log(response.data.driver_registration_list)
+            setTimeout(()=>{
+                setDriverRegistrations(response.data.driver_registration_list)
+                setIsLoading(false)
+            }, Int.DELAY_TIMEOUT_API)
         }).catch((error) => {
             console.log(error)
+            setIsLoading(false)
         })
     }
 
@@ -135,7 +138,7 @@ export default function DriverRegisterPage() {
                             </Stack>
                         </Stack>
                     </div>
-                    <div className={`container-fluid bg-glass rounded p-4 mt-3 body-page`} style={{minHeight:'75vh'}}>
+                    <div className={`container-fluid bg-glass rounded p-4 mt-3`} style={{minHeight:'75vh'}}>
                             {
                                 is_loading ? (<DriverRegistrationSkeleton/>)
                                     : (<ul className="team">

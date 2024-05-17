@@ -13,6 +13,7 @@ import {UseDocumentTitle, UseLocalStorage} from "~/hooks";
 
 import {Message, Http, StatusCode} from '~/constants'
 import {useNavigate} from "react-router-dom";
+import {useSocket} from "~/service/socket/SocketService";
 
 export default function SignInPage() {
     UseDocumentTitle('Sign in')
@@ -40,6 +41,7 @@ export default function SignInPage() {
         setPass(value)
     }
 
+    const socket = useSocket()
     const handleLogin = () => {
         let is_error = false
         if (email === undefined || !IsValidEmail(email)) {
@@ -60,19 +62,22 @@ export default function SignInPage() {
             email,
             password
         }).then(function (response) {
-            console.log(response)
+            console.log("response: ",  response);
             if(response.data.code === StatusCode.OK){
-                navigate("/");
                 const [getLocal, saveLocal] = UseLocalStorage()
                 saveLocal(Http.USER_TOKEN, response.data.token)
                 saveLocal(Http.ROLE, response.data.role)
+
+                socket.auth = {token: response.data.token}
+                socket.connect()
+                navigate("/");
             } else {
                 alert('login fail')
             }
             setIsLoading(false)
         }).catch(function (error) {
             setIsLoading(false)
-            console.log(error);
+            console.log("error: ",  error);
             enqueueSnackbar('Something went wrong, can\'t connect to server', {variant: 'error'})
         });
 

@@ -11,21 +11,10 @@ export default function UserCard() {
             <div className={clsx(user_card_style.nft)}>
                 <div className={clsx(user_card_style.main)}>
                     <Stack direction={'column'} spacing={1}>
-                        <Skeleton variant="rounded" width={'100%'} height={220} />
+                        <Skeleton variant="rounded" width={'100%'} height={150} />
                         <Skeleton variant="text" sx={{ fontSize: '1rem' }} height={30}  width={120} />
                     </Stack>
                     <Stack>
-                        <Stack justifyContent="flex-start"
-                               alignItems="center"
-                               spacing={3}
-                               direction={'row'}>
-                            <div>
-                                <Skeleton variant="rounded" width={20} height={20} />
-                            </div>
-                            <div style={{width:'100%'}}>
-                                <Skeleton variant="text" sx={{ fontSize: '1rem' }} height={30}  width={'50%'} />
-                            </div>
-                        </Stack>
                         <Stack justifyContent="flex-start"
                                alignItems="center"
                                spacing={3}
@@ -54,13 +43,10 @@ export default function UserCard() {
                                alignItems="center"
                                direction={'row'}>
                             <div>
-                                <Skeleton variant="rounded" width={60} height={40} />
+                                <Skeleton variant="rounded" width={120} height={20} />
                             </div>
                             <div>
-                                <Skeleton variant="rounded" width={90} height={40} />
-                            </div>
-                            <div>
-                                <Skeleton variant="rounded" width={30} height={30} />
+                                <Skeleton variant="rounded" width={60} height={30} />
                             </div>
                         </Stack>
                     </div>

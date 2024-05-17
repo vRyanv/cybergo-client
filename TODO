@@ -5,20 +5,29 @@ I. UI
 4. driver register page: @done
     4.1 list: done@
     4.2 detail: done@
+    4.1 accept and refuse: ###
 5. user:
     5.1 list: @done
     5.2 detail: @done
+    5.3 ban user: #####
 
-6. feedback:
-8. Dashboard:
-9. profile:
-10. share trip:
+6. socket IO:
+    init socket: @done
+    init event: @done
+
+7. notification: @done
+
+8. Dashboard: ###
+9. profile:###
+
 
 II. function (API):
 1. registration:
     1.1 driver registration list:
     1.1 driver registration detail:
-
+2. user management:
+    2.1 list: @done
+    2.2 detail:
 
 fake UI
     1. User

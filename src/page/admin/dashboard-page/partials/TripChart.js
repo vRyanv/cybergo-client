@@ -8,7 +8,7 @@ export const data = {
     datasets: [
         {
             label: 'Trip quantity',
-            data: [10,20,38],
+            data: [1,0,0],
             borderColor: '#FF6347',
             backgroundColor: 'rgba(255,130,1,0.8)',
         }

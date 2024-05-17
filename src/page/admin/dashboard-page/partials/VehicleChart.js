@@ -8,7 +8,7 @@ export const data = {
     datasets: [
         {
             label: 'Vehicle quantity',
-            data: [10, 20,30],
+            data: [1, 2,1],
             borderColor: '#FF6347',
             backgroundColor: 'rgba(255,130,1,0.8)',
         }

@@ -5,7 +5,6 @@ import {Stack} from "@mui/material";
 
 export default function Index({vehicle_id, avatar, full_name, id_number, phone, license_plates, vehicle_type, status}) {
     let status_classes;
-    console.log(vehicle_id)
     if (status === DriverRegistrationStatus.QUEUE) {
         status_classes = 'queue-driver-registration-status bg-blue-sky-light'
     } else if (status === DriverRegistrationStatus.ACCEPTED) {

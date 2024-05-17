@@ -11,6 +11,8 @@ const paths = {
         DASHBOARD_PATH: '/dashboard',
         USER_PATH: '/user',
         USER_DETAIL_PATH: '/user/detail/:user_id',
+        ENABLE_F2A_PATH: '/enable-f2a',
+        VERIFY_F2A_PATH: '/verify-f2a',
     }
 }
 
