@@ -1,17 +1,13 @@
-import {
-    AdminPanelSettingsIcon,
-    ArrowBackIosNewIcon,
-    KeyboardArrowDownIcon,
-    NotificationsNoneTwoToneIcon
-} from '~/assets/icon'
-import avatar_admin from '~/assets/images/avatar/admin_avatar.jpg'
+import {AdminPanelSettingsIcon, ArrowBackIosNewIcon} from '~/assets/icon'
 import React, {useState} from "react";
 import ProfileDialog from "./ProfileDialog";
 import {NavLink, useNavigate} from "react-router-dom";
 import {UseLocalStorage} from "~/hooks";
-import {Http} from "~/constants";
+import {FieldName} from "~/constants";
 import {useSocket} from "~/service/socket/SocketService";
 import Notifications from "./notification/Notifications";
+import CurrentUser from "~/layout/main-admin-layout/components/header/CurrentUser";
+
 export default function Header() {
     const [is_open_profile_dialog, setIsOpenProfileDialog] = useState(false)
 
@@ -47,8 +43,8 @@ export default function Header() {
     const navigate = useNavigate();
     const onLogout = () => {
         const [getLocal, saveLocal] = UseLocalStorage()
-        saveLocal(Http.USER_TOKEN, "")
-        saveLocal(Http.ROLE, "")
+        saveLocal(FieldName.USER_TOKEN, "")
+        saveLocal(FieldName.ROLE, "")
         socket.close()
         navigate('/sign-in')
     }
@@ -66,27 +62,10 @@ export default function Header() {
                 <ArrowBackIosNewIcon/>
             </div>
             <div className="navbar-nav align-items-center ms-auto" style={{marginRight: '23px'}}>
-                <div className="nav-item dropdown">
-                    <a href="#" style={{color: 'black'}} className="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <div className="d-inline-block div-icon-dropdown">
-                            <NotificationsNoneTwoToneIcon/>
-                        </div>
-                        <span className="d-none d-lg-inline-flex" style={{marginLeft: '1rem'}}>Notification</span>
-                        <KeyboardArrowDownIcon className="i con-arrow"/>
-                    </a>
-                    <div
-                        className="dropdown-menu dropdown-menu-end border-0 rounded m-0"
-                        data-bs-popper="none" style={{minWidth: '17rem'}}>
-                        <Notifications/>
-                    </div>
-                </div>
+                <Notifications/>
+
                 <div  className="nav-item dropdown cursor-pointer">
-                    <div style={{color: 'black'}} className="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                        <img className="rounded-circle me-lg-2" src={avatar_admin} alt="avatar"
-                             style={{width: '40px', height: '40px'}}/>
-                        <span className="d-none d-lg-inline-flex" style={{marginLeft: '1rem'}}>Admin</span>
-                        <KeyboardArrowDownIcon className="icon-arrow"/>
-                    </div>
+                    <CurrentUser/>
                     <div className="dropdown-menu dropdown-menu-end border-0 rounded m-0">
                         <div className="dropdown-item" onClick={onProfileClicked}>Profile</div>
                         <NavLink

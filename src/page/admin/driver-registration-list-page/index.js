@@ -1,23 +1,17 @@
-import {Scrollbars} from "react-custom-scrollbars-2";
 import React, {useEffect, useState} from "react";
 import axios from 'axios'
 
 import {
     FormControl,
+    IconButton,
+    InputAdornment,
     InputLabel,
     MenuItem,
+    OutlinedInput,
     Select,
     Stack,
-    OutlinedInput,
-    InputAdornment,
-    IconButton,
 } from "@mui/material";
-import {
-    DriverRegistrationStatus,
-    Int,
-    Http,
-    ResourcePath
-} from '~/constants'
+import {DriverRegistrationStatus, FieldName, Http, Int, Message, ResourcePath} from '~/constants'
 import DriverItem from './partials/driver-item'
 import DriverRegistrationSkeleton from './partials/DriverRegistrationSkeleton'
 
@@ -25,12 +19,12 @@ import car from '~/assets/images/ic_car.svg'
 import moto from '~/assets/images/ic_moto.svg'
 import truck from '~/assets/images/ic_truck.svg'
 
-import {SearchIcon, RefreshTwoToneIcon} from '~/assets/icon'
-import {UseLocalStorage, UseNavIsClose} from "~/hooks";
+import {RefreshTwoToneIcon, SearchIcon} from '~/assets/icon'
+import {UseLocalStorage} from "~/hooks";
 import Button from "@mui/material/Button";
+import {enqueueSnackbar} from "notistack";
 
 export default function DriverRegisterPage() {
-    const is_nav_close = UseNavIsClose()
     const [is_loading, setIsLoading] = useState(true)
 
     const vehicle_types = {
@@ -38,37 +32,54 @@ export default function DriverRegisterPage() {
         Car: car,
         Truck: truck
     }
-    const [driver_registrations, setDriverRegistrations] = useState([])
+    const [registrations, setRegistrations] = useState([])
+    const [registrations_display, setRegistrationsDisplay] = useState([])
     useEffect(() => {
-        GetDriverRegistrationList('ALL')
+        GetRegistrationList(DriverRegistrationStatus.ALL)
     }, [])
 
-    const GetDriverRegistrationList = (status) => {
+    const GetRegistrationList = (status) => {
+        setIsLoading(true)
         const [getLocal] = UseLocalStorage()
-        const token = getLocal(Http.USER_TOKEN)
+        const token = getLocal(FieldName.USER_TOKEN)
         axios.get(
-            `${Http.HOST}/admin/driver-registration`,
+            `${Http.HOST}/admin/driver-registration/${status}`,
             {
                 headers: { 'authorization': token}
             }
         ).then((response) => {
             setTimeout(()=>{
-                setDriverRegistrations(response.data.driver_registration_list)
+                setRegistrations(response.data.driver_registration_list)
+                setRegistrationsDisplay(response.data.driver_registration_list)
                 setIsLoading(false)
             }, Int.DELAY_TIMEOUT_API)
         }).catch((error) => {
             console.log(error)
             setIsLoading(false)
+            enqueueSnackbar(Message.SOMETHING_WENT_WRONG, {variant: 'error'})
         })
     }
 
-    const [status_selection, setStatusSelection] = useState(DriverRegistrationStatus.QUEUE)
+    const [status_selection, setStatusSelection] = useState(DriverRegistrationStatus.ALL)
     const onChangeRegistrationFilter = (e) => {
-        setStatusSelection(e.target.value)
-        setIsLoading(true)
-        setTimeout(() => {
-            setIsLoading(false)
-        }, Int.DELAY_TIMEOUT_API)
+        const status = e.target.value
+        setStatusSelection(status)
+        GetRegistrationList(status)
+    }
+
+    const onRefreshClicked = () => {
+        setRegistrationsDisplay(registrations)
+    }
+    const [search, setSearch] = useState("")
+
+    const onSearchRegistration = () => {
+        const find_name_list = registrations.filter(regist =>
+            regist.driver.full_name.toLowerCase().includes(search) ||
+            regist.driver.phone_number.includes(search) ||
+            regist.driver.id_number.includes(search) ||
+            regist.license_plates.includes(search)
+        )
+        setRegistrationsDisplay(find_name_list)
     }
 
 
@@ -81,26 +92,28 @@ export default function DriverRegisterPage() {
                         <Stack direction={{xs: 'column', sm: 'column', md: 'row'}}
                                justifyContent="space-between"
                                spacing={3}>
-                            <h5>Driver Registration</h5>
+                            <h5>Vehicle Registration</h5>
                             <Stack direction={{xs: 'column', sm: 'row'}}
                                    spacing={3}>
                                 <Button startIcon={<RefreshTwoToneIcon/>}
                                         fullWidth
                                         variant="outlined"
+                                        onClick={onRefreshClicked}
                                         color={'info'}>Refresh</Button>
                                 <FormControl
                                     fullWidth style={{minWidth: '15rem'}}
                                     size="small"
                                     variant="outlined">
-                                    <InputLabel htmlFor="outlined-adornment-password">Search</InputLabel>
+                                    <InputLabel htmlFor="input_search">Search</InputLabel>
                                     <OutlinedInput
-                                        id="outlined-adornment-password"
+                                        id="input_search"
                                         type={'text'}
+                                        value={search}
+                                        onChange={(e) => setSearch(e.target.value)}
                                         endAdornment={
                                             <InputAdornment position="end">
                                                 <IconButton
-                                                    onClick={() => {
-                                                    }}
+                                                    onClick={onSearchRegistration}
                                                     onMouseDown={() => {
                                                     }}
                                                     edge="end"
@@ -109,7 +122,7 @@ export default function DriverRegisterPage() {
                                                 </IconButton>
                                             </InputAdornment>
                                         }
-                                        label="Password"
+                                        label="Search"
                                     />
                                 </FormControl>
                                 <FormControl
@@ -126,7 +139,6 @@ export default function DriverRegisterPage() {
                                         value={status_selection}
                                         onChange={(e) => onChangeRegistrationFilter(e)}
                                         label="Registration Status">
-                                        <MenuItem value={'ALL'}>ALL</MenuItem>
                                         {
                                             Object.keys(DriverRegistrationStatus).map((key, index) => {
                                                 return <MenuItem key={index}
@@ -143,7 +155,7 @@ export default function DriverRegisterPage() {
                                 is_loading ? (<DriverRegistrationSkeleton/>)
                                     : (<ul className="team">
                                         {
-                                            driver_registrations.map((registration, index) =>
+                                            registrations_display.map((registration, index) =>
                                                 <DriverItem
                                                     avatar={`${Http.HOST + ResourcePath.AVATAR_RES_PATH + registration.driver.avatar}`}
                                                     vehicle_type={vehicle_types[registration.vehicle_type]}

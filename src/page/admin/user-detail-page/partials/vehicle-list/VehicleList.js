@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 
 import {VisibilityTwoToneIcon} from '~/assets/icon'
 import {Http, ResourcePath} from "~/constants";
+
 const type_list = {
     "Truck":truck,
     "Motorcycle":moto,

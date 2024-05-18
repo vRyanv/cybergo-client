@@ -2,11 +2,18 @@ import axios from 'axios'
 
 import {Stack} from "@mui/material";
 import Button from "@mui/material/Button";
-import {HighlightOffTwoToneIcon, CheckIcon} from "~/assets/icon";
-import {Http} from "~/constants";
+import {CheckIcon, HighlightOffTwoToneIcon} from "~/assets/icon";
+import {DriverRegistrationStatus, FieldName, Http, Int, Message, StatusCode} from "~/constants";
 import {UseLocalStorage} from "~/hooks";
+import {enqueueSnackbar} from "notistack";
+import LoadingButton from "@mui/lab/LoadingButton";
+import {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import ic_success from '~/assets/images/ic_success.svg'
+import ic_refused from '~/assets/images/ic_refused.svg'
 
-export default function DriverInformation({ vehicle_id,
+export default function DriverInformation({
+                                              vehicle_id,
                                               onBtnOpenRefuseDialogClicked,
                                               full_name,
                                               gender,
@@ -15,26 +22,43 @@ export default function DriverInformation({ vehicle_id,
                                               address,
                                               avatar,
                                               front_id_card,
-                                              back_id_card
+                                              back_id_card,
+                                              vehicle_status
                                           }) {
+    const navigate = useNavigate();
     const onViewLargeImg = (img_src) => {
         const preview_img = document.getElementById('large_image')
         preview_img.src = img_src
     }
-
+    const [is_loading, setIsLoading] = useState(false);
     const onAcceptBtnCLicked = () => {
+        setIsLoading(true)
         const [getLocal] = UseLocalStorage()
-        const token = getLocal(Http.USER_TOKEN)
-        const headers  = { 'authorization': token }
+        const token = getLocal(FieldName.USER_TOKEN)
+        const headers = {'authorization': token}
         const data = {vehicle_id}
         axios.put(
             `${Http.HOST}/admin/driver-registration/accept`,
             data,
             {headers}
         ).then((response) => {
-
+            setTimeout(() => {
+                setIsLoading(false)
+                switch (response.data.code) {
+                    case StatusCode.NOT_FOUND:
+                        enqueueSnackbar('Not found registration', {variant: 'warning'})
+                        break
+                    case StatusCode.UPDATED:
+                        navigate('/driver-registration')
+                        enqueueSnackbar('Registration has been approved', {variant: 'success'})
+                        break
+                    default:
+                        enqueueSnackbar(Message.INVALID_YOUR_REQUEST, {variant: 'error'})
+                }
+            }, Int.DELAY_TIMEOUT_API)
         }).catch((error) => {
-            console.log(error)
+            setIsLoading(false)
+            enqueueSnackbar(Message.SOMETHING_WENT_WRONG, {variant: 'error'})
         })
     }
 
@@ -46,16 +70,32 @@ export default function DriverInformation({ vehicle_id,
                 <div className="">
                     <h6 style={{width: 'fit-content'}}>Driver Information</h6>
                 </div>
-                <Stack direction="row" spacing={3}>
-                    <Button startIcon={<CheckIcon/>}
-                            onClick={onAcceptBtnCLicked}
-                            variant="outlined"
-                            color={'success'}>Accept</Button>
-                    <Button startIcon={<HighlightOffTwoToneIcon/>}
-                            onClick={onBtnOpenRefuseDialogClicked}
-                            variant="outlined"
-                            color={'error'}>Refuse</Button>
-                </Stack>
+                {
+                    vehicle_status === DriverRegistrationStatus.QUEUE ?
+                        (<Stack direction="row" spacing={3}>
+                            <LoadingButton color={'success'}
+                                           variant="outlined"
+                                           loading={is_loading}
+                                           onClick={onAcceptBtnCLicked}
+                                           loadingPosition="start"
+                                           startIcon={<CheckIcon/>}>
+                                Accept
+                            </LoadingButton>
+                            <Button startIcon={<HighlightOffTwoToneIcon/>}
+                                    onClick={onBtnOpenRefuseDialogClicked}
+                                    variant="outlined"
+                                    color={'error'}>Refuse</Button>
+                        </Stack>)
+                        :
+                        (<img
+                            src={vehicle_status === DriverRegistrationStatus.ACCEPTED ? ic_success : ic_refused}
+                            alt="registration status"
+                            width={'70px'}
+                            height={'auto'}
+                            />
+                        )
+                }
+
             </Stack>
             <hr/>
             <Stack justifyContent="space-between"
@@ -71,7 +111,7 @@ export default function DriverInformation({ vehicle_id,
                 </div>
                 <div className="mt-3">
                     <p className={'title-field-driver-registration rounded'}>Identity Number</p>
-                    <p className="text-dark">{id_number}</p>
+                    <p className="text-dark">{id_number ? id_number : 'Not update'}</p>
                 </div>
                 <div className="mt-3">
                     <p className={'title-field-driver-registration rounded'}>Phone</p>
@@ -80,7 +120,7 @@ export default function DriverInformation({ vehicle_id,
             </Stack>
             <div className="mt-3">
                 <p className={'title-field-driver-registration rounded'}>Address</p>
-                <p className="text-dark">{address}</p>
+                <p className="text-dark">{address ? address : 'Not update'}</p>
             </div>
             <Stack
                 justifyContent="flex-start"

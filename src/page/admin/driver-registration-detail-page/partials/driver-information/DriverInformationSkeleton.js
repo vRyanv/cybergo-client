@@ -1,6 +1,4 @@
 import {Skeleton, Stack} from "@mui/material";
-import Button from "@mui/material/Button";
-import {CancelIcon, CheckCircleIcon} from "~/assets/icon";
 
 export default function DriverInformation() {
     return (

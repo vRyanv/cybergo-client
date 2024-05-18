@@ -24,8 +24,10 @@ import ContactPageTwoToneIcon from '@mui/icons-material/ContactPageTwoTone';
 import DirectionsCarFilledTwoToneIcon from '@mui/icons-material/DirectionsCarFilledTwoTone';
 import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
 import ModeEditOutlineTwoToneIcon from '@mui/icons-material/ModeEditOutlineTwoTone';
+import FilterAltTwoToneIcon from '@mui/icons-material/FilterAltTwoTone';
 
 export {
+    FilterAltTwoToneIcon as Filter,
     ModeEditOutlineTwoToneIcon as Pencil,
     WhereToVoteIcon as TripIcon,
     DirectionsCarFilledTwoToneIcon as VehicleIcon,

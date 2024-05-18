@@ -2,15 +2,10 @@ import clsx from 'clsx'
 import React from "react";
 import {enqueueSnackbar} from 'notistack'
 import {UseViewLargeImg} from '~/hooks'
-import {IconButton, Rating, Stack} from "@mui/material";
+import {Rating, Stack} from "@mui/material";
 import user_card_style from './user-card.module.css'
 
-import {
-    ContactEmergencyTwoToneIcon,
-    LocalPhoneTwoToneIcon,
-    MailTwoToneIcon,
-    ContentCopyIcon
-} from '~/assets/icon'
+import {LocalPhoneTwoToneIcon, MailTwoToneIcon} from '~/assets/icon'
 
 import {Http, Message, ResourcePath} from '~/constants'
 import {useNavigate} from "react-router-dom";

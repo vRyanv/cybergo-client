@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Axios from 'axios'
 import {enqueueSnackbar} from 'notistack'
-import {LoadingButton } from '@mui/lab'
+import {LoadingButton} from '@mui/lab'
 import './sign-in-page.css'
 import FontStyle from '~/assets/css/font.module.css'
 
@@ -11,9 +11,10 @@ import IsValidEmail from "~/utils/email-util";
 
 import {UseDocumentTitle, UseLocalStorage} from "~/hooks";
 
-import {Message, Http, StatusCode} from '~/constants'
+import {Http, Message, StatusCode} from '~/constants'
 import {useNavigate} from "react-router-dom";
 import {useSocket} from "~/service/socket/SocketService";
+import {FieldName} from "~/constants/FieldName";
 
 export default function SignInPage() {
     UseDocumentTitle('Sign in')
@@ -65,14 +66,15 @@ export default function SignInPage() {
             console.log("response: ",  response);
             if(response.data.code === StatusCode.OK){
                 const [getLocal, saveLocal] = UseLocalStorage()
-                saveLocal(Http.USER_TOKEN, response.data.token)
-                saveLocal(Http.ROLE, response.data.role)
-
+                saveLocal(FieldName.USER_TOKEN, response.data.token)
+                saveLocal(FieldName.ROLE, response.data.role)
+                saveLocal(FieldName.AVATAR, response.data.avatar)
+                saveLocal(FieldName.FULL_NAME, response.data.full_name)
                 socket.auth = {token: response.data.token}
                 socket.connect()
                 navigate("/");
             } else {
-                alert('login fail')
+                enqueueSnackbar('Invalid email or password!', {variant: 'error'})
             }
             setIsLoading(false)
         }).catch(function (error) {

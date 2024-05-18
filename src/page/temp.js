@@ -1,5 +1,6 @@
 import {useParams} from "react-router-dom";
 import {PrimaryButton} from '~/components/custom'
+
 export default function DriverRegisterPage(){
     const {id} = useParams()
     return (

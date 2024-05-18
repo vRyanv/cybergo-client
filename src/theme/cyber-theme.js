@@ -1,5 +1,5 @@
 import {createTheme} from "@mui/material";
-import {orange, blue, green, red, grey} from "@mui/material/colors";
+import {blue, green, grey, orange, red} from "@mui/material/colors";
 
 const CyberTheme = createTheme({
     palette:{

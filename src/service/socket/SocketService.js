@@ -1,6 +1,6 @@
 import {createContext, useContext} from 'react'
 import {io} from "socket.io-client";
-import {Http} from "~/constants";
+import {FieldName, Http} from "~/constants";
 import {UseLocalStorage} from "~/hooks";
 import {SocketEvent} from "~/service/socket/SocketEvent";
 
@@ -14,7 +14,7 @@ const socket = io(
 )
 export default function SocketService({children }){
     const [getLocal] = UseLocalStorage()
-    const token = getLocal(Http.USER_TOKEN)
+    const token = getLocal(FieldName.USER_TOKEN)
     if(!socket.connected && token){
         socket.auth = {token}
         socket.autoConnect = true

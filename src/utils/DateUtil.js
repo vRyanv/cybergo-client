@@ -1,4 +1,11 @@
 const DateUtil = {
+    ConvertStringDateToDateForm(date_str){
+        if(!date_str){
+            return null
+        }
+        const date = new Date(date_str)
+        return DateUtil.PadStartDate(date)
+    },
     GetCurrentDate(){
         let date = new Date();
         date = DateUtil.PadStartDate(date)

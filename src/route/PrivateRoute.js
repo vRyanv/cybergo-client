@@ -2,12 +2,12 @@ import NotFoundLayout from "~/layout/not-found-layout";
 import UnauthorizedPage from "~/page/common/unauthorized-page";
 import {UseLocalStorage} from '~/hooks'
 
-import {Http, Role} from '~/constants'
+import {FieldName, Role} from "~/constants";
 
 const PrivateRoute = ({children}) => {
     const [getLocal, saveLocal] = UseLocalStorage()
-    const token = getLocal(Http.USER_TOKEN)
-    const role = getLocal(Http.ROLE)
+    const token = getLocal(FieldName.USER_TOKEN)
+    const role = getLocal(FieldName.ROLE)
     if (!token || role !== Role.ADMIN) {
         return (
             <NotFoundLayout>

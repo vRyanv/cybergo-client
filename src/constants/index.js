@@ -7,8 +7,10 @@ import Int from './Int'
 import ResourcePath from './ResourcePath'
 import Role from './Role'
 import AccountStatus from './AccountStatus'
+import {FieldName} from './FieldName'
 
 export {
+    FieldName,
     AccountStatus,
     Role,
     ResourcePath,

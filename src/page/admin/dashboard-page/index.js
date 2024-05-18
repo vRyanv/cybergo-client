@@ -1,28 +1,8 @@
 import React from 'react';
-import {
-    ArcElement,
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
+import {ArcElement, BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip,} from 'chart.js';
 import {TripChart, VehicleChart} from "~/page/admin/dashboard-page/partials";
-import {
-    FormControl, IconButton,
-    InputAdornment,
-    InputBase,
-    InputLabel,
-    MenuItem,
-    OutlinedInput,
-    Select,
-    Stack
-} from "@mui/material";
-import {AccountStatus} from "~/constants";
-import {PeopleAltTwoToneIcon, SearchIcon, TripIcon, VehicleIcon} from "~/assets/icon";
-import DateUtil from "~/utils/DateUtil";
+import {Stack} from "@mui/material";
+import {PeopleAltTwoToneIcon, TripIcon, VehicleIcon} from "~/assets/icon";
 import {RatingChart} from "~/page/admin/dashboard-page/partials/RatingChart";
 
 ChartJS.register(
@@ -90,78 +70,8 @@ export default function DashboardPage() {
             </div>
             <div className="container-fluid pt-4 px-4">
                 <div className="row g-4">
-                    <div className="col-sm-12 col-xl-6">
-                        <div className="bg-glass shadow text-center rounded p-4">
-                            <Stack direction={{xs: 'column', sm: 'row', md: 'row'}}
-                                   useFlexGap
-                                   justifyContent="space-between"
-                                   flexWrap="wrap"
-                                   spacing={2}>
-                                <h5 style={{textAlign: 'start'}}>Vehicle</h5>
-                                <Stack
-                                    spacing={2}
-                                    direction={{xs: 'column', sm: 'row', md: 'row'}}
-                                    justifyContent="space-around"
-                                >
-                                    <FormControl variant="outlined" size="small">
-                                        <InputLabel htmlFor="outlined-adornment-password">From date</InputLabel>
-                                        <OutlinedInput
-                                            id="outlined-adornment-password"
-                                            type={'date'}
-                                            value={DateUtil.GetCurrentDate()}
-                                            label="From date"
-                                        />
-                                    </FormControl>
-                                    <FormControl variant="outlined" size="small">
-                                        <InputLabel htmlFor="outlined-adornment-password">To Date</InputLabel>
-                                        <OutlinedInput
-                                            id="outlined-adornment-password"
-                                            type={'date'}
-                                            value={DateUtil.GetCurrentDate()}
-                                            label="To Date"
-                                        />
-                                    </FormControl>
-                                </Stack>
-                                <VehicleChart/>
-                            </Stack>
-                        </div>
-                    </div>
-                    <div className="col-sm-12 col-xl-6">
-                        <div className="bg-glass shadow text-center rounded p-4">
-                            <Stack direction={{xs: 'column', sm: 'row', md: 'row'}}
-                                   useFlexGap
-                                   justifyContent="space-between"
-                                   flexWrap="wrap"
-                                   spacing={2}>
-                                <h5 style={{textAlign: 'start'}}>Trip</h5>
-                                <Stack
-                                    spacing={2}
-                                    direction={{xs: 'column', sm: 'row', md: 'row'}}
-                                    justifyContent="space-around"
-                                >
-                                    <FormControl variant="outlined" size="small">
-                                        <InputLabel htmlFor="outlined-adornment-password">From date</InputLabel>
-                                        <OutlinedInput
-                                            id="outlined-adornment-password"
-                                            type={'date'}
-                                            value={DateUtil.GetCurrentDate()}
-                                            label="From date"
-                                        />
-                                    </FormControl>
-                                    <FormControl variant="outlined" size="small">
-                                        <InputLabel htmlFor="outlined-adornment-password">To Date</InputLabel>
-                                        <OutlinedInput
-                                            id="outlined-adornment-password"
-                                            type={'date'}
-                                            value={DateUtil.GetCurrentDate()}
-                                            label="To Date"
-                                        />
-                                    </FormControl>
-                                </Stack>
-                                <TripChart/>
-                            </Stack>
-                        </div>
-                    </div>
+                    <VehicleChart/>
+                    <TripChart/>
                 </div>
             </div>
             <div className="container-fluid pt-4 px-4">

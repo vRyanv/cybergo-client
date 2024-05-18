@@ -389,10 +389,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /*    transition: .5s;*/
 /*}*/
 
+.has-notification{
+    animation: notification 1s infinite ease-in;
+}
+
+@keyframes notification {
+    0% {background-color: white}
+    50% {background-color: #ff7900}
+    100% {background-color: white}
+}
 
 .dropdown-divider{
-    border-top: 1px solid white !important;
-    background-color: white;
+    border-top: 1px solid lightgrey !important;
+    background-color: lightgrey;
     opacity: 1;
 }
 

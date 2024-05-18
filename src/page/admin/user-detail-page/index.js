@@ -1,48 +1,45 @@
-import {
-    IconButton,
-    Stack
-} from "@mui/material";
+import {IconButton, Stack} from "@mui/material";
 import Button from "@mui/material/Button";
-import {KeyboardReturnIcon, BlockTwoToneIcon} from "~/assets/icon";
+import {BlockTwoToneIcon, KeyboardReturnIcon} from "~/assets/icon";
 import React, {useEffect, useState} from "react";
 
 import {UseHistoryBack, UseLocalStorage} from '~/hooks'
 import {
-    UserInformation,
-    UserInformationSkeleton,
     IdentityCard,
     IdentityCardSkeleton,
+    UserInformation,
+    UserInformationSkeleton,
     VehicleList,
     VehicleListSkeleton
 } from './partials'
 
 
-import {Http, Int, Message, StatusCode} from '~/constants'
+import {FieldName, Http, Int, StatusCode} from '~/constants'
 
-import avatar from '~/assets/images/avatar/truc.jpg'
-import front_id_card from '~/assets/images/front-id-card.jpg'
-import back_id_card from '~/assets/images/back-id-card.png'
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import axios from "axios";
 import {enqueueSnackbar} from "notistack";
 
 export default function AccountDetail() {
-    const navigate = useNavigate()
     const [is_loading, setIsLoading] = useState(true)
     const [user_detail, setUserDetail] = useState()
 
     const {user_id} = useParams()
     useEffect(()=> {
         const [getLocal] = UseLocalStorage()
-        const token = getLocal(Http.USER_TOKEN)
+        const token = getLocal(FieldName.USER_TOKEN)
         axios.get(
             `${Http.HOST}/admin/user-management/detail/${user_id}`,
             {
                 headers: {'authorization': token}
             }
         ).then((response) => {
+            console.log(response.data)
             if(response.data.code !== StatusCode.OK){
-                navigate('/not-found')
+                setUserDetail(undefined)
+                console.log(user_detail)
+                setIsLoading(false)
+                enqueueSnackbar('Not found - 404', {variant: 'error'})
                 return
             }
             setTimeout(() => {
@@ -74,13 +71,16 @@ export default function AccountDetail() {
                                 size="medium">
                                 <KeyboardReturnIcon/>
                             </IconButton>
-                            <h5>User Details</h5>
-                            <Button startIcon={<BlockTwoToneIcon/>}
-                                    variant="outlined"
-                                    disabled={is_loading}
-                                    color={'danger'}>
-                                Ban user
-                            </Button>
+                            <h5>User Detail</h5>
+                            {
+                               user_detail ? (<Button startIcon={<BlockTwoToneIcon/>}
+                                         variant="outlined"
+                                         disabled={is_loading}
+                                         color={'danger'}>
+                                    Ban user
+                                </Button>) : (<></>)
+                            }
+
                         </Stack>
                     </div>
                 </div>
@@ -90,30 +90,35 @@ export default function AccountDetail() {
                             <div className="col-sm-12 col-xl-6 ">
                                 {
                                     is_loading ? (<UserInformationSkeleton/>)
-                                        : (<UserInformation
+                                        : (
+                                            user_detail ?
+                                                (<UserInformation
                                             id_number={user_detail.user.id_number}
                                             full_name={user_detail.user.full_name}
                                             phone={user_detail.user.country.prefix + user_detail.user.phone_number}
                                             address={user_detail.user.address}
                                             avatar={user_detail.user.avatar}
-                                            start={user_detail.user.rating}
-                                        />)
+                                            start={user_detail.user.rating} />)
+                                            :
+                                                (<div></div>)
+                                        )
                                 }
                             </div>
                             <div className="col-sm-12 col-xl-6">
                                 {
                                     is_loading ? (<IdentityCardSkeleton/>)
-                                        : (<IdentityCard
+                                        : ( user_detail ? (<IdentityCard
                                             front_id_card={user_detail.user.front_id_card}
                                             back_id_card={user_detail.user.back_id_card}
-                                        />)
+                                        />) : (<div></div>)
+                                        )
                                 }
                             </div>
                         </div>
                     </div>
                 </div>
                 {
-                    is_loading ? (<VehicleListSkeleton/>) : (<VehicleList vehicles={user_detail.vehicles}/>)
+                    is_loading ? (<VehicleListSkeleton/>) : ( user_detail ? (<VehicleList vehicles={user_detail.vehicles}/>) : (<div></div>))
                 }
             </div>
         </div>

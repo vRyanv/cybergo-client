@@ -11,13 +11,11 @@ import {
 import {RefreshTwoToneIcon, SearchIcon} from "~/assets/icon";
 
 import Button from "@mui/material/Button";
-import {AccountStatus, Http, Int} from "~/constants";
+import {AccountStatus, FieldName, Http, Int} from "~/constants";
 import React, {useEffect, useState} from "react";
-import {UseLocalStorage, UseNavIsClose} from "~/hooks";
+import {UseLocalStorage} from "~/hooks";
 
 import {UserCard, UserCardSkeleton} from './partials'
-
-import user_data from '~/data/user.json'
 import axios from "axios";
 
 export default function UserListPage() {
@@ -33,7 +31,7 @@ export default function UserListPage() {
     const GetUserList = (status) => {
         setIsLoading(true)
         const [getLocal] = UseLocalStorage()
-        const token = getLocal(Http.USER_TOKEN)
+        const token = getLocal(FieldName.USER_TOKEN)
         axios.get(
             `${Http.HOST}/admin/user-management/list/${status}`,
             {

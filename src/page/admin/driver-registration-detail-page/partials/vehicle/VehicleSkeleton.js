@@ -1,5 +1,4 @@
 import {Skeleton, Stack} from "@mui/material";
-import {UseViewLargeImg} from '~/hooks'
 
 export default function Vehicle(){
     return (<div className="shadow rounded h-100 p-4 bg-glass">

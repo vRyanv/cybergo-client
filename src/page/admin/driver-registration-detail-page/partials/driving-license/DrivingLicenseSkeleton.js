@@ -1,5 +1,4 @@
 import {Skeleton, Stack} from "@mui/material"
-import {UseViewLargeImg} from '~/hooks'
 
 export default function DrivingLicense(){
 

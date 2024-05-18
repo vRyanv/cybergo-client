@@ -1,10 +1,4 @@
-import {
-    DashboardTwoToneIcon,
-    QuestionAnswerTwoToneIcon,
-    ManageAccountsTwoToneIcon,
-    PeopleAltTwoToneIcon,
-    ContactPageTwoToneIcon, VehicleIcon
-} from '~/assets/icon'
+import {ContactPageTwoToneIcon, DashboardTwoToneIcon, PeopleAltTwoToneIcon} from '~/assets/icon'
 import {NavLink, useLocation} from "react-router-dom";
 import React from "react";
 import front from '~/assets/css/font.module.css'

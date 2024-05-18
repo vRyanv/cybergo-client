@@ -1,5 +1,6 @@
-import { Bar } from 'react-chartjs-2';
- const options = {
+import {Bar} from 'react-chartjs-2';
+
+const options = {
     indexAxis: 'y',
     elements: {
         bar: {

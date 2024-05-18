@@ -1,6 +1,4 @@
 import {Rating, Stack} from "@mui/material";
-import clsx from 'clsx'
-import style from '../../../user-list-page/partials/user-card/user-card.module.css'
 
 import {UseViewLargeImg} from '~/hooks'
 import React from "react";

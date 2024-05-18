@@ -1,5 +1,5 @@
 import {useParams} from "react-router-dom";
-import { KeyboardReturnIcon} from '~/assets/icon'
+import {KeyboardReturnIcon} from '~/assets/icon'
 import {useEffect, useState} from "react";
 import {UseHistoryBack, UseLocalStorage} from '~/hooks'
 import {IconButton} from "@mui/material";
@@ -7,13 +7,17 @@ import axios from 'axios'
 import {enqueueSnackbar} from 'notistack'
 
 import {
-    DriverInformation, DriverInformationSkeleton,
-    DrivingLicense, DrivingLicenseSkeleton,
-    Vehicle, VehicleSkeleton,
-    RefuseDialog
+    DriverInformation,
+    DriverInformationSkeleton,
+    DrivingLicense,
+    DrivingLicenseSkeleton,
+    RefuseDialog,
+    Vehicle,
+    VehicleSkeleton
 } from './partials'
 
-import {Http, ResourcePath, Int, Message} from '~/constants'
+import {FieldName, Http, Int, Message, ResourcePath} from '~/constants'
+
 export default function DriverRegisterPage() {
     const [is_loading, setIsLoading] = useState(true)
     //refuse dialog
@@ -21,30 +25,34 @@ export default function DriverRegisterPage() {
     const openRefuseDialogClicked = () => {
         setIsOpenRefuseDialog(true)
     }
-    const onCloseRefuseDialog = () => {
+    const closeRefuseDialog = () => {
         setIsOpenRefuseDialog(false)
     }
 
     const {vehicle_id} = useParams()
     const [registration_detail, setRegistrationDetail] = useState()
     useEffect(()=> {
+        setIsLoading(true)
         const [getLocal] = UseLocalStorage()
-        const token = getLocal(Http.USER_TOKEN)
+        const token = getLocal(FieldName.USER_TOKEN)
         axios.get(
             `${Http.HOST}/admin/driver-registration/detail/${vehicle_id}`,
             {
                 headers: { 'authorization': token}
             }
         ).then((response) => {
-            setRegistrationDetail(response.data.driver_registration_detail)
-            console.log(response.data)
-            setIsLoading(false)
+            setTimeout(()=> {
+                setRegistrationDetail(response.data.driver_registration_detail)
+                console.log(response.data)
+                setIsLoading(false)
+            }, Int.DELAY_TIMEOUT_API)
+
         }).catch((error) => {
             console.log(error)
             setIsLoading(false)
             enqueueSnackbar(Message.SOMETHING_WENT_WRONG,{ variant: 'error' })
         })
-    }, [])
+    }, [vehicle_id])
 
     return (
         <div className="container-fluid pt-4 px-4 mb-3">
@@ -58,9 +66,9 @@ export default function DriverRegisterPage() {
                             size="large">
                             <KeyboardReturnIcon/>
                         </IconButton>
-                        <h5>Driver Registration Details</h5>
+                        <h5>Vehicle Registration Detail</h5>
                         <div>
-                            <RefuseDialog is_open={is_open_refuse_dialog} onClose={onCloseRefuseDialog}/>
+                            <RefuseDialog is_open={is_open_refuse_dialog} CloseDialog={closeRefuseDialog} vehicle_id={vehicle_id}/>
                         </div>
                     </div>
                 </div>
@@ -80,6 +88,7 @@ export default function DriverRegisterPage() {
                                         avatar={`${Http.HOST + ResourcePath.AVATAR_RES_PATH + registration_detail.driver.avatar}`}
                                         front_id_card={`${Http.HOST + ResourcePath.ID_CARD_RES_PATH + registration_detail.driver.front_id_card}`}
                                         back_id_card={`${Http.HOST + ResourcePath.ID_CARD_RES_PATH + registration_detail.driver.back_id_card}`}
+                                        vehicle_status={registration_detail.status}
                                     />)
                                 }
                             </div>

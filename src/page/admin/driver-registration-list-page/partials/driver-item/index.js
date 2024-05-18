@@ -32,7 +32,7 @@ export default function Index({vehicle_id, avatar, full_name, id_number, phone, 
                     direction={{xs: 'column', sm: 'row'}}>
                     <div className="mb-3">
                         <label className="form-label title-info-driver">Identity Number</label>
-                        <div>{id_number}</div>
+                        <div>{id_number ? id_number : 'Not update'}</div>
                     </div>
                     <div className="mb-3">
                         <label className="form-label title-info-driver">Phone Number</label>

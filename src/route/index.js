@@ -1,13 +1,13 @@
 import {Route, Routes} from "react-router-dom";
 
-import {SignInLayout, NotFoundLayout, MainClientLayout, MainAdminLayout} from "~/layout";
-import {SignInPage, NotFoundPage, EnableF2APage, VerifyF2APage} from "~/page/common";
+import {MainAdminLayout, MainClientLayout, NotFoundLayout, SignInLayout} from "~/layout";
+import {EnableF2APage, NotFoundPage, SignInPage, VerifyF2APage} from "~/page/common";
 import {
-    UserListPage,
-    UserDetailPage,
     DashboardPage,
-    DriverRegistrationPage,
     DriverRegistrationDetailPage,
+    DriverRegistrationPage,
+    UserDetailPage,
+    UserListPage,
 } from "~/page/admin";
 import {HomePage} from "~/page/client";
 import PrivateRoute from './PrivateRoute'
