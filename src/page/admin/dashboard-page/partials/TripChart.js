@@ -115,7 +115,7 @@ export default function TripChart() {
                        justifyContent="space-between"
                        flexWrap="wrap"
                        spacing={2}>
-                    <h5 style={{textAlign: 'start'}}>Trip quantity</h5>
+                    <h5 style={{textAlign: 'start'}}>Trip</h5>
                     <Stack
                         spacing={2}
                         gap={1}

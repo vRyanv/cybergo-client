@@ -12,6 +12,8 @@ import {
     DrivingLicense,
     DrivingLicenseSkeleton,
     RefuseDialog,
+    RegistrationCertificate,
+    RegistrationCertificateSkeleton,
     Vehicle,
     VehicleSkeleton
 } from './partials'
@@ -31,17 +33,17 @@ export default function DriverRegisterPage() {
 
     const {vehicle_id} = useParams()
     const [registration_detail, setRegistrationDetail] = useState()
-    useEffect(()=> {
+    useEffect(() => {
         setIsLoading(true)
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         axios.get(
             `${Http.HOST}/admin/driver-registration/detail/${vehicle_id}`,
             {
-                headers: { 'authorization': token}
+                headers: {'authorization': token}
             }
         ).then((response) => {
-            setTimeout(()=> {
+            setTimeout(() => {
                 setRegistrationDetail(response.data.driver_registration_detail)
                 console.log(response.data)
                 setIsLoading(false)
@@ -50,7 +52,7 @@ export default function DriverRegisterPage() {
         }).catch((error) => {
             console.log(error)
             setIsLoading(false)
-            enqueueSnackbar(Message.SOMETHING_WENT_WRONG,{ variant: 'error' })
+            enqueueSnackbar(Message.SOMETHING_WENT_WRONG, {variant: 'error'})
         })
     }, [vehicle_id])
 
@@ -68,7 +70,8 @@ export default function DriverRegisterPage() {
                         </IconButton>
                         <h5>Vehicle Registration Detail</h5>
                         <div>
-                            <RefuseDialog is_open={is_open_refuse_dialog} CloseDialog={closeRefuseDialog} vehicle_id={vehicle_id}/>
+                            <RefuseDialog is_open={is_open_refuse_dialog} CloseDialog={closeRefuseDialog}
+                                          vehicle_id={vehicle_id}/>
                         </div>
                     </div>
                 </div>
@@ -76,21 +79,35 @@ export default function DriverRegisterPage() {
                     <div className="container-fluid px-4 container-fluid-body">
                         <div className="row g-4">
                             <div className="col-sm-12 col-xl-6 ">
-                                {
-                                    is_loading ? (<DriverInformationSkeleton/>) : (<DriverInformation
-                                        vehicle_id={vehicle_id}
-                                        onBtnOpenRefuseDialogClicked={openRefuseDialogClicked}
-                                        full_name={registration_detail.driver.full_name}
-                                        gender={registration_detail.driver.gender}
-                                        id_number={registration_detail.driver.id_number}
-                                        phone={`${registration_detail.driver.country.prefix + registration_detail.driver.phone_number}`}
-                                        address={registration_detail.driver.address}
-                                        avatar={`${Http.HOST + ResourcePath.AVATAR_RES_PATH + registration_detail.driver.avatar}`}
-                                        front_id_card={`${Http.HOST + ResourcePath.ID_CARD_RES_PATH + registration_detail.driver.front_id_card}`}
-                                        back_id_card={`${Http.HOST + ResourcePath.ID_CARD_RES_PATH + registration_detail.driver.back_id_card}`}
-                                        vehicle_status={registration_detail.status}
-                                    />)
-                                }
+                                <div className="container-fluid px-4 container-fluid-body">
+                                    <div className="row g-4">
+                                        <div className="col-sm-12 col-xl-12">
+                                            {
+                                                is_loading ? (<DriverInformationSkeleton/>) : (<DriverInformation
+                                                    vehicle_id={vehicle_id}
+                                                    onBtnOpenRefuseDialogClicked={openRefuseDialogClicked}
+                                                    full_name={registration_detail.driver.full_name}
+                                                    gender={registration_detail.driver.gender}
+                                                    id_number={registration_detail.driver.id_number}
+                                                    phone={`${registration_detail.driver.country.prefix + registration_detail.driver.phone_number}`}
+                                                    address={registration_detail.driver.address}
+                                                    avatar={`${Http.HOST + ResourcePath.AVATAR_RES_PATH + registration_detail.driver.avatar}`}
+                                                    front_id_card={`${Http.HOST + ResourcePath.ID_CARD_RES_PATH + registration_detail.driver.front_id_card}`}
+                                                    back_id_card={`${Http.HOST + ResourcePath.ID_CARD_RES_PATH + registration_detail.driver.back_id_card}`}
+                                                    vehicle_status={registration_detail.status}
+                                                />)
+                                            }
+                                        </div>
+                                        <div className="col-sm-12 col-xl-12">
+                                            {
+                                                is_loading ? (<RegistrationCertificateSkeleton/>)
+                                                    : (<RegistrationCertificate
+                                                        front_certificate={`${Http.HOST + ResourcePath.DRIVER_REGISTRATION_RES_PATH + registration_detail.front_vehicle_registration_certificate}`}
+                                                        back_certificate={`${Http.HOST + ResourcePath.DRIVER_REGISTRATION_RES_PATH + registration_detail.back_vehicle_registration_certificate}`}/>)
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div className="col-sm-12 col-xl-6">
                                 <div className="container-fluid px-4 container-fluid-body">

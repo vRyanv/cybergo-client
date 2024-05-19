@@ -8,8 +8,10 @@ import ResourcePath from './ResourcePath'
 import Role from './Role'
 import AccountStatus from './AccountStatus'
 import {FieldName} from './FieldName'
+import {VehicleImage} from './VehicleImage'
 
 export {
+    VehicleImage,
     FieldName,
     AccountStatus,
     Role,

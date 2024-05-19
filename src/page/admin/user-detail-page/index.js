@@ -1,6 +1,5 @@
 import {IconButton, Stack} from "@mui/material";
-import Button from "@mui/material/Button";
-import {BlockTwoToneIcon, KeyboardReturnIcon} from "~/assets/icon";
+import {KeyboardReturnIcon} from "~/assets/icon";
 import React, {useEffect, useState} from "react";
 
 import {UseHistoryBack, UseLocalStorage} from '~/hooks'
@@ -10,7 +9,8 @@ import {
     UserInformation,
     UserInformationSkeleton,
     VehicleList,
-    VehicleListSkeleton
+    VehicleListSkeleton,
+    AccountStatusButton
 } from './partials'
 
 
@@ -73,12 +73,10 @@ export default function AccountDetail() {
                             </IconButton>
                             <h5>User Detail</h5>
                             {
-                               user_detail ? (<Button startIcon={<BlockTwoToneIcon/>}
-                                         variant="outlined"
-                                         disabled={is_loading}
-                                         color={'danger'}>
-                                    Ban user
-                                </Button>) : (<></>)
+                               user_detail ?
+                                  <AccountStatusButton user_id={user_detail.user._id} account_status={user_detail.user.account_status}/>
+                                   :
+                                   (<div></div>)
                             }
 
                         </Stack>

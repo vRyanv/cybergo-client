@@ -22,7 +22,6 @@ export default function UserListPage() {
     const [is_loading, setIsLoading] = useState(false)
     const [userList, setUserList] = useState([])
     const [userListDisplay, setUserListDisplay] = useState([])
-    const [userSearchList, setUserSearchList] = useState([])
 
     useEffect(() => {
         GetUserList(AccountStatus.ALL)

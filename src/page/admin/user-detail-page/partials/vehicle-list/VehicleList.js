@@ -1,22 +1,18 @@
 import React from "react";
 import {Stack} from "@mui/material";
 
-import truck from '~/assets/images/ic_truck.svg'
-import moto from '~/assets/images/ic_moto.svg'
-import car from '~/assets/images/ic_car.svg'
 import Button from "@mui/material/Button";
 
 import {VisibilityTwoToneIcon} from '~/assets/icon'
-import {Http, ResourcePath} from "~/constants";
-
-const type_list = {
-    "Truck":truck,
-    "Motorcycle":moto,
-    "Car":car
-}
+import {Http, ResourcePath, VehicleImage} from "~/constants";
+import {useNavigate} from "react-router-dom";
 
 
 export default function VehicleList({vehicles}){
+    const navigate = useNavigate();
+    const onViewMoreClicked = (vehicle_id) => {
+        navigate(`/vehicle-detail/${vehicle_id}`)
+    }
     return (
         <div className="col-sm-12 col-xl-12">
             <div className="shadow rounded h-100 p-4 bg-glass">
@@ -49,12 +45,13 @@ export default function VehicleList({vehicles}){
                                             <div style={{textAlign: 'center'}}>
                                                 <img
                                                     style={{width: '50px', height: '50px'}}
-                                                    src={type_list[vehicle.vehicle_type]}
+                                                    src={VehicleImage[vehicle.vehicle_type]}
                                                     alt="transport-type"/>
                                             </div>
                                         </div>
                                         <div className="mb-2">
                                             <Button
+                                                onClick={() => onViewMoreClicked(vehicle._id.toString())}
                                                 variant={'outlined'}
                                                 color={'info'}
                                                 startIcon={<VisibilityTwoToneIcon/>}

@@ -25,8 +25,15 @@ import DirectionsCarFilledTwoToneIcon from '@mui/icons-material/DirectionsCarFil
 import WhereToVoteIcon from '@mui/icons-material/WhereToVote';
 import ModeEditOutlineTwoToneIcon from '@mui/icons-material/ModeEditOutlineTwoTone';
 import FilterAltTwoToneIcon from '@mui/icons-material/FilterAltTwoTone';
-
+import SecurityTwoToneIcon from '@mui/icons-material/SecurityTwoTone';
+import CancelTwoToneIcon from '@mui/icons-material/CancelTwoTone';
+import LockOpenTwoToneIcon from '@mui/icons-material/LockOpenTwoTone';
+import LockTwoToneIcon from '@mui/icons-material/LockTwoTone';
 export {
+    LockTwoToneIcon as Lock,
+    LockOpenTwoToneIcon as Unlock,
+    CancelTwoToneIcon as Cancel,
+    SecurityTwoToneIcon as Security,
     FilterAltTwoToneIcon as Filter,
     ModeEditOutlineTwoToneIcon as Pencil,
     WhereToVoteIcon as TripIcon,

@@ -11,7 +11,7 @@ import IsValidEmail from "~/utils/email-util";
 
 import {UseDocumentTitle, UseLocalStorage} from "~/hooks";
 
-import {Http, Message, StatusCode} from '~/constants'
+import {Http, Message, Role, StatusCode} from '~/constants'
 import {useNavigate} from "react-router-dom";
 import {useSocket} from "~/service/socket/SocketService";
 import {FieldName} from "~/constants/FieldName";
@@ -33,7 +33,6 @@ export default function SignInPage() {
         setErrorEmailMess('')
         setEmail(value)
     }
-
 
 
     const onPassChange = (value) => {
@@ -63,8 +62,17 @@ export default function SignInPage() {
             email,
             password
         }).then(function (response) {
-            console.log("response: ",  response);
-            if(response.data.code === StatusCode.OK){
+            console.log("response: ", response);
+            setIsLoading(false)
+            if (response.data.code === StatusCode.TWO_FACTER_AUTHENTICATION) {
+                navigate(`/verify-2fa/${response.data.email}`);
+            } else if (response.data.code === StatusCode.VERIFY) {
+                enqueueSnackbar('The account needs phone number verification', {variant: 'warning'})
+            } else if (response.data.code === StatusCode.NOT_FOUND) {
+                enqueueSnackbar('Invalid email or password!', {variant: 'error'})
+            } else if (response.data.code === StatusCode.ACCOUNT_BANNED) {
+                enqueueSnackbar('Account has been banned!', {variant: 'error'})
+            } else {
                 const [getLocal, saveLocal] = UseLocalStorage()
                 saveLocal(FieldName.USER_TOKEN, response.data.token)
                 saveLocal(FieldName.ROLE, response.data.role)
@@ -72,14 +80,15 @@ export default function SignInPage() {
                 saveLocal(FieldName.FULL_NAME, response.data.full_name)
                 socket.auth = {token: response.data.token}
                 socket.connect()
-                navigate("/");
-            } else {
-                enqueueSnackbar('Invalid email or password!', {variant: 'error'})
+                if(response.data.role === Role.ADMIN){
+                    navigate("/dashboard");
+                } else {
+                    navigate("/");
+                }
             }
-            setIsLoading(false)
         }).catch(function (error) {
             setIsLoading(false)
-            console.log("error: ",  error);
+            console.log("error: ", error);
             enqueueSnackbar('Something went wrong, can\'t connect to server', {variant: 'error'})
         });
 

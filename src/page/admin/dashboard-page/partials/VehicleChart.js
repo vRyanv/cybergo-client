@@ -1,9 +1,7 @@
 import {Bar} from "react-chartjs-2";
-import React, {useEffect, useRef, useState} from "react";
-import {FormControl, IconButton, InputLabel, OutlinedInput, Stack} from "@mui/material";
-import DateUtil from "~/utils/DateUtil";
-import Button from "@mui/material/Button";
-import {Filter, RefreshTwoToneIcon} from "~/assets/icon";
+import React, {useEffect, useState} from "react";
+import {FormControl, InputLabel, OutlinedInput, Stack} from "@mui/material";
+import {Filter} from "~/assets/icon";
 import {UseLocalStorage} from "~/hooks";
 import {FieldName, Http, Int, Message} from "~/constants";
 import axios from "axios";
@@ -130,7 +128,7 @@ export default function VehicleChart() {
                        justifyContent="space-between"
                        flexWrap="wrap"
                        spacing={2}>
-                    <h5 style={{textAlign: 'start'}}>Vehicle quantity</h5>
+                    <h5 style={{textAlign: 'start'}}>Vehicle</h5>
                     <Stack
                         spacing={2}
                         gap={1}

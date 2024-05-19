@@ -69,7 +69,7 @@ export default function Header() {
                     <div className="dropdown-menu dropdown-menu-end border-0 rounded m-0">
                         <div className="dropdown-item" onClick={onProfileClicked}>Profile</div>
                         <NavLink
-                            to={'/enable-f2a'}
+                            to={'/enable-2fa'}
                             className="dropdown-item">
                             F2A
                         </NavLink >
