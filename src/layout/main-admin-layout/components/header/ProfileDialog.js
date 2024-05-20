@@ -29,7 +29,7 @@ export default function ProfileDialog({is_open, onClose}) {
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         axios.get(
-            `${Http.HOST}/user/profile`,
+            `${Http.HOST}/api/user/profile`,
             {
                 headers: {'authorization': token}
             }
@@ -95,7 +95,7 @@ export default function ProfileDialog({is_open, onClose}) {
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         axios.put(
-            `${Http.HOST}/user/profile/update`,
+            `${Http.HOST}/api/user/profile/update`,
             form_profile,
             {
                 headers: {
@@ -158,7 +158,7 @@ export default function ProfileDialog({is_open, onClose}) {
         const token = getLocal(FieldName.USER_TOKEN)
         setIsLoadingUpdatePass(true)
         axios.put(
-            `${Http.HOST}/security/update-password`,
+            `${Http.HOST}/api/security/update-password`,
             {...user_pass},
             {
                 headers: {'authorization': token}
@@ -171,7 +171,11 @@ export default function ProfileDialog({is_open, onClose}) {
                     return
                 }
                 enqueueSnackbar('Update password successfully', {variant: 'success'})
-
+                setUserPass({
+                    current_password: '',
+                    new_password: '',
+                    confirm_password: '',
+                })
             }, Int.DELAY_TIMEOUT_API)
         }).catch((error) => {
             setIsLoadingUpdatePass(false)

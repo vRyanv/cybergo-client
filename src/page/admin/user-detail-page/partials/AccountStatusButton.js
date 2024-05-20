@@ -20,7 +20,7 @@ export default function AccountStatusButton({user_id, account_status}) {
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         axios.put(
-            `${Http.HOST}/admin/user-management/unlock-user`,
+            `${Http.HOST}/api/admin/user-management/unlock-user`,
             {user_id},
             {
                 headers: {'authorization': token}

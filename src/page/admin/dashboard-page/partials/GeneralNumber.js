@@ -21,7 +21,7 @@ export default function GeneralNumber(){
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         axios.get(
-            `${Http.HOST}/admin/dashboard/general-statistic`,
+            `${Http.HOST}/api/admin/dashboard/general-statistic`,
             {
                 headers: { 'authorization': token}
             }

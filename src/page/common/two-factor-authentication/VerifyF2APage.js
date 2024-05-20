@@ -18,7 +18,7 @@ export default function VerifyF2APage() {
     const onSubmitToken = () => {
         setIsLoading(true)
         axios.post(
-            `${Http.HOST}/security/2fa/verify`,
+            `${Http.HOST}/api/security/2fa/verify`,
             {
                 email,
                 otp_code

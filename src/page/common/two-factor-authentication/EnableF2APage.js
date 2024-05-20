@@ -2,7 +2,7 @@ import {Skeleton, Stack} from "@mui/material";
 import {Cancel, Security} from "~/assets/icon";
 import React, {useEffect, useState} from "react";
 import {UseLocalStorage} from "~/hooks";
-import {FieldName, Http, Message, StatusCode, Int} from "~/constants";
+import {FieldName, Http, Int, Message, StatusCode} from "~/constants";
 import axios from "axios";
 import {enqueueSnackbar} from "notistack";
 import {LoadingButton} from "@mui/lab";
@@ -14,7 +14,7 @@ export default function EnableF2APage() {
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         axios.get(
-            `${Http.HOST}/security/2fa/qr-code`,
+            `${Http.HOST}/api/security/2fa/qr-code`,
             {
                 headers: {'authorization': token}
             }
@@ -45,7 +45,7 @@ export default function EnableF2APage() {
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         axios.put(
-            `${Http.HOST}/security/2fa/update-2fa-status`,
+            `${Http.HOST}/api/security/2fa/update-2fa-status`,
             {status},
             {
                 headers: {'authorization': token}

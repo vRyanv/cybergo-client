@@ -87,7 +87,7 @@ export default function VehicleChart() {
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         axios.get(
-            `${Http.HOST}/admin/dashboard/vehicle-statistic/${filter_date.from_date}/${filter_date.to_date}`,
+            `${Http.HOST}/api/admin/dashboard/vehicle-statistic/${filter_date.from_date}/${filter_date.to_date}`,
             {
                 headers: { 'authorization': token}
             }

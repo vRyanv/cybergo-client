@@ -38,7 +38,7 @@ export default function DriverInformation({
         const headers = {'authorization': token}
         const data = {vehicle_id}
         axios.put(
-            `${Http.HOST}/admin/driver-registration/accept`,
+            `${Http.HOST}/api/admin/driver-registration/accept`,
             data,
             {headers}
         ).then((response) => {

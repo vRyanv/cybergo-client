@@ -1,5 +1,5 @@
 const Int = {
-    DELAY_TIMEOUT_API: 500
+    DELAY_TIMEOUT_API: 200
 }
 
 export default Int

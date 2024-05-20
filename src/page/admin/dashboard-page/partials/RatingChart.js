@@ -47,7 +47,7 @@ export default function RatingChart() {
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         axios.get(
-            `${Http.HOST}/admin/dashboard/rating-statistic`,
+            `${Http.HOST}/api/admin/dashboard/rating-statistic`,
             {
                 headers: { 'authorization': token}
             }

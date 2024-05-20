@@ -19,7 +19,7 @@ export default function IdentityCard({front_id_card, back_id_card}){
                     <p className={'title-field-driver-registration rounded'}>Front of ID card</p>
                     <img
                         onClick={()=>UseViewLargeImg(front_id_card)}
-                        src={String(Http.HOST + ResourcePath.ID_CARD_RES_PATH + front_id_card)}
+                        src={front_id_card}
                         alt="Not update"
                         data-bs-toggle="modal"
                         data-bs-target="#image_larger_modal"
@@ -30,7 +30,7 @@ export default function IdentityCard({front_id_card, back_id_card}){
                     <p className={'title-field-driver-registration rounded'}>Back of ID card</p>
                     <img
                         onClick={()=>UseViewLargeImg(back_id_card)}
-                        src={String(Http.HOST + ResourcePath.ID_CARD_RES_PATH + back_id_card)}
+                        src={back_id_card}
                         alt="Not update"
                         data-bs-toggle="modal"
                         data-bs-target="#image_larger_modal"

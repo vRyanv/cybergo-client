@@ -6,7 +6,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import {HighlightOffTwoToneIcon, Lock} from '~/assets/icon'
 import {useState} from "react";
 import {UseLocalStorage} from "~/hooks";
-import {AccountStatus, FieldName, Http, Int, Message, StatusCode} from "~/constants";
+import {FieldName, Http, Int, Message, StatusCode} from "~/constants";
 import axios from "axios";
 import {enqueueSnackbar} from "notistack";
 
@@ -18,7 +18,7 @@ export default function BanDialog({is_open, setOpen, user_id, callback}) {
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         axios.put(
-            `${Http.HOST}/admin/user-management/ban-user`,
+            `${Http.HOST}/api/admin/user-management/ban-user`,
             {user_id, ban_reason},
             {
                 headers: {'authorization': token}

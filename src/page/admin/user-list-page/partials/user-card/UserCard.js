@@ -1,28 +1,21 @@
 import clsx from 'clsx'
 import React from "react";
-import {enqueueSnackbar} from 'notistack'
 import {UseViewLargeImg} from '~/hooks'
 import {Rating, Stack} from "@mui/material";
 import user_card_style from './user-card.module.css'
 
 import {LocalPhoneTwoToneIcon, MailTwoToneIcon} from '~/assets/icon'
 
-import {Http, Message, ResourcePath} from '~/constants'
+import {Http, ResourcePath} from '~/constants'
 import {useNavigate} from "react-router-dom";
 
-export default function UserCard({user_id, avatar, full_name, id_number, phone, email, rating, acc_status}) {
+export default function UserCard({user_id, avatar, full_name, phone, email, rating, acc_status}) {
     const navigate = useNavigate()
     const onUserCardClicked = function (e) {
         const node_names = ['BUTTON', 'IMG', 'svg', 'path']
         if (!node_names.includes(e.target.nodeName)) {
             navigate(`/user/detail/${user_id}`)
         }
-    }
-
-    const onBtnCopyClicked = (id_number, phone, email) => {
-        const copy_text = `ID: ${id_number}\nphone: ${phone}\nemail: ${email}`
-        navigator.clipboard.writeText(copy_text);
-        enqueueSnackbar(Message.COPY_INFO_SUCCESS, {variant: 'success'})
     }
 
     avatar = Http.HOST + ResourcePath.AVATAR_RES_PATH + avatar

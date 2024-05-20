@@ -38,7 +38,7 @@ export default function DriverRegisterPage() {
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         axios.get(
-            `${Http.HOST}/admin/driver-registration/detail/${vehicle_id}`,
+            `${Http.HOST}/api/admin/driver-registration/detail/${vehicle_id}`,
             {
                 headers: {'authorization': token}
             }

@@ -15,13 +15,17 @@ export default function RefuseDialog({is_open, CloseDialog, vehicle_id}) {
     const navigate = useNavigate();
     const [is_loading, setIsLoading] = useState(false)
     const [refuse_reason, setRefuseReason] = useState("")
+    const onCloseDialog = () => {
+        setRefuseReason("")
+        CloseDialog()
+    }
     const onBtnSendReasonRefuse = () => {
         setIsLoading(true)
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         const body = {vehicle_id, refuse_reason}
         axios.put(
-            `${Http.HOST}/admin/driver-registration/refuse`,
+            `${Http.HOST}/api/admin/driver-registration/refuse`,
             body,
             {
                 headers: { 'authorization': token}
@@ -36,6 +40,7 @@ export default function RefuseDialog({is_open, CloseDialog, vehicle_id}) {
                         break
                     case StatusCode.UPDATED:
                         navigate('/driver-registration')
+
                         enqueueSnackbar('Registration has been denied', {variant: 'success'})
                         break
                     default:
@@ -53,7 +58,7 @@ export default function RefuseDialog({is_open, CloseDialog, vehicle_id}) {
         <Dialog
             fullWidth
             open={is_open}
-            onClose={is_loading ? null : CloseDialog}>
+            onClose={is_loading ? null : onCloseDialog}>
             <DialogTitle>Refuse</DialogTitle>
             <DialogContent>
                 <DialogContentText>
@@ -77,7 +82,7 @@ export default function RefuseDialog({is_open, CloseDialog, vehicle_id}) {
             <DialogActions style={{padding: '0 1.5rem 1rem 0'}}>
                 <Button disabled={is_loading}
                         startIcon={<HighlightOffTwoToneIcon/>}
-                        onClick={CloseDialog}
+                        onClick={onCloseDialog}
                         variant='outlined'
                         color={'error'}>
                     Cancel

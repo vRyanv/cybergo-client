@@ -32,7 +32,7 @@ export default function UserListPage() {
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         axios.get(
-            `${Http.HOST}/admin/user-management/list/${status}`,
+            `${Http.HOST}/api/admin/user-management/list/${status}`,
             {
                 headers: { 'authorization': token}
             }
@@ -139,11 +139,9 @@ export default function UserListPage() {
                                                     key={index}
                                                     user_id={user._id}
                                                     avatar={user.avatar}
-                                                    id_number={user.id_number}
                                                     full_name={user.full_name}
                                                     phone={user.country.prefix + user.phone_number}
                                                     email={user.email}
-                                                    role={user.role}
                                                     rating={user.rating}
                                                     acc_status={user.account_status}
                                                 />

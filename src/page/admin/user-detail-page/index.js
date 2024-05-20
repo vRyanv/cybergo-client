@@ -4,13 +4,13 @@ import React, {useEffect, useState} from "react";
 
 import {UseHistoryBack, UseLocalStorage} from '~/hooks'
 import {
+    AccountStatusButton,
     IdentityCard,
     IdentityCardSkeleton,
     UserInformation,
     UserInformationSkeleton,
     VehicleList,
-    VehicleListSkeleton,
-    AccountStatusButton
+    VehicleListSkeleton
 } from './partials'
 
 
@@ -29,7 +29,7 @@ export default function AccountDetail() {
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         axios.get(
-            `${Http.HOST}/admin/user-management/detail/${user_id}`,
+            `${Http.HOST}/api/admin/user-management/detail/${user_id}`,
             {
                 headers: {'authorization': token}
             }

@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import Axios from 'axios'
 import {enqueueSnackbar} from 'notistack'
 import {LoadingButton} from '@mui/lab'
 import './sign-in-page.css'
@@ -15,6 +14,7 @@ import {Http, Message, Role, StatusCode} from '~/constants'
 import {useNavigate} from "react-router-dom";
 import {useSocket} from "~/service/socket/SocketService";
 import {FieldName} from "~/constants/FieldName";
+import axios from "axios";
 
 export default function SignInPage() {
     UseDocumentTitle('Sign in')
@@ -33,7 +33,6 @@ export default function SignInPage() {
         setErrorEmailMess('')
         setEmail(value)
     }
-
 
     const onPassChange = (value) => {
         setIsErrorPass(false)
@@ -58,7 +57,7 @@ export default function SignInPage() {
             return
         }
         setIsLoading(true)
-        Axios.post(`${Http.HOST}/security/sign-in`, {
+        axios.post(`${Http.HOST}/api/security/sign-in`, {
             email,
             password
         }).then(function (response) {
@@ -80,7 +79,7 @@ export default function SignInPage() {
                 saveLocal(FieldName.FULL_NAME, response.data.full_name)
                 socket.auth = {token: response.data.token}
                 socket.connect()
-                if(response.data.role === Role.ADMIN){
+                if (response.data.role === Role.ADMIN) {
                     navigate("/dashboard");
                 } else {
                     navigate("/");

@@ -4,13 +4,13 @@ import React, {useEffect, useState} from "react";
 import NotificationItem from "./NotificationItem";
 import {UseLocalStorage} from "~/hooks";
 import {FieldName, Http, ResourcePath, StatusCode} from "~/constants";
-import axios from "axios";
 import {enqueueSnackbar} from "notistack";
 import {useSocket} from "~/service/socket/SocketService";
 import {SocketEvent} from "~/service/socket/SocketEvent";
 import {KeyboardArrowDownIcon, NotificationsNoneTwoToneIcon} from "~/assets/icon";
 import clsx from "clsx";
 import notification_audio from '~/assets/audio/notification.mp3'
+import axios from "axios";
 
 export default function Notifications() {
     const socket = useSocket();
@@ -20,7 +20,7 @@ export default function Notifications() {
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         axios.get(
-            `${Http.HOST}/notification/admin`,
+            `${Http.HOST}/api/notification/admin`,
             {
                 headers: {'authorization': token}
             }

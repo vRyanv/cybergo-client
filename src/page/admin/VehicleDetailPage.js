@@ -17,7 +17,7 @@ export default function VehicleDetailPage() {
         const [getLocal] = UseLocalStorage()
         const token = getLocal(FieldName.USER_TOKEN)
         axios.get(
-            `${Http.HOST}/user/vehicle/vehicle-detail/${vehicle_id}`,
+            `${Http.HOST}/api/user/vehicle/vehicle-detail/${vehicle_id}`,
             {
                 headers: {'authorization': token}
             }
