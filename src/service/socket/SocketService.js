@@ -13,7 +13,7 @@ export default function SocketService({ children }) {
   const [getLocal] = UseLocalStorage();
   const token = getLocal(FieldName.USER_TOKEN);
   if (!socket.connected && token) {
-    socket.authorization = token;
+    socket.auth = { token };
     socket.autoConnect = true;
     socket.connect();
   }
