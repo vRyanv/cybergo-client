@@ -1,5 +1,5 @@
 const Http = {
-    AUTHORIZATION: 'authorization',
-    HOST: 'https://cybercars.tech'
-}
-export default Http
+  AUTHORIZATION: "authorization",
+  HOST: "https://cybergoserver.onrender.com",
+};
+export default Http;
