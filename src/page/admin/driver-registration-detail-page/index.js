@@ -103,11 +103,11 @@ export default function DriverRegisterPage() {
                             registration_detail.driver.avatar
                           }`}
                           front_id_card={`${
-                            RESOURCE_HOST +
+                            Http.RESOURCE_HOST +
                             registration_detail.driver.front_id_card
                           }`}
                           back_id_card={`${
-                            RESOURCE_HOST +
+                            Http.RESOURCE_HOST +
                             registration_detail.driver.back_id_card
                           }`}
                           vehicle_status={registration_detail.status}
